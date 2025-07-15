@@ -6,6 +6,8 @@ import Signup from '../auth/signup/Signup'
 import Login from '../auth/login/Login'
 import Profile from '../features/profile/Profile'
 import Feeds from '../features/feeds/Feeds'
+
+
 function AppRouter() {
   return (
     <Routes>
