@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+* {
+  /* Font is added here */
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Custom heading-style css... */
+.heading-style {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
