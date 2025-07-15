@@ -5,7 +5,7 @@ function LandingPage() {
     <>
         <div className='min-h-screen flex flex-col md:flex-row items-center justify-start'>
                 <div className='flex flex-col items-center justify-end h-[76vh]'>
-                    <div className='heading-style text-5xl'>
+                    <div className='rowdies-bold text-red-500 text-5xl'>
                         ChiChat
                     </div>
                     <div className='my-5'>
