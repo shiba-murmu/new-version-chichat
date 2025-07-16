@@ -43,7 +43,7 @@ function ForLargeScreen() {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="container-right  flex items-center justify-center text-white">
+            <div className="container-right bg-[#7257ff]  flex items-center justify-center text-white">
                 <div className='flex flex-col items-center justify-center gap-4'>
                     <div>
                         <span className='font-extrabold text-4xl subheading-style text-amber-300'>ChiChat account</span>
