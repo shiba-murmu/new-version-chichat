@@ -4,7 +4,6 @@
   /* Font is added here */
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
   font-style: normal;
 }
 
@@ -41,3 +40,6 @@
     font-style: normal;
   }
   
+  .custom-background {
+    background-color: #7257ff;
+  }

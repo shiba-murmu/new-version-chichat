@@ -15,3 +15,5 @@ If you are developing a production application, we recommend using TypeScript wi
 color -- #fe9a00
 color -- #1c398e
 color -- white
+
+bringal- color #7257ff
