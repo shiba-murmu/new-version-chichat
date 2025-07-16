@@ -6,23 +6,23 @@ import Image from '../../assets/images/conversation.gif'
 function ForSmallScreen() {
     return (
         <>
-            <div className='rowdies-bold text-blue-800 text-6xl'>
+            <div className='rowdies-bold text-[#7257ff] text-6xl'>
                 ChiChat
             </div>
             <div className='text-center'>
-                <span className='text-sm'>Stay close with the people who matter.<br />Because life’s better when <br /> you stay  <span className='text-blue-800 border-l px-1 bg-blue-100'>connected</span>.</span>
+                <span className='text-sm'>Stay close with the people who matter.<br />Because life’s better when <br /> you stay  <span className='text-[#7257ff] border-l px-1 bg-blue-100'>connected</span>.</span>
             </div>
             <div className='my-5'>
-                <img src={Image} alt="" className='h-60 w-52 rounded-xl md:w-96' />
+                <img src={Image} alt="" className='h-60 w-56 rounded-xl md:w-96' />
             </div>
             <div className='flex justify-center flex-col items-center gap-2'>
                 <Link to={'/signup'}>
-                    <div className='border  py-2 w-3xs flex justify-center text-sm rounded-full text-white bg-blue-800'>
+                    <div className='border  py-2 w-3xs flex justify-center text-sm rounded-full text-white bg-[#7257ff]'>
                         Get started
                     </div>
                 </Link>
                 <Link to={'/login'}>
-                    <div className='border text-blue-800 border-blue-800 px-4 w-3xs flex justify-center text-sm py-2 rounded-full'>
+                    <div className='border text-[#7257ff] border-[#7257ff] px-4 w-3xs flex justify-center text-sm py-2 rounded-full'>
                         Already have an account
                     </div>
                 </Link>
@@ -43,7 +43,7 @@ function ForLargeScreen() {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="container-right bg-blue-900 flex items-center justify-center text-white">
+            <div className="container-right  flex items-center justify-center text-white">
                 <div className='flex flex-col items-center justify-center gap-4'>
                     <div>
                         <span className='font-extrabold text-4xl subheading-style text-amber-300'>ChiChat account</span>
