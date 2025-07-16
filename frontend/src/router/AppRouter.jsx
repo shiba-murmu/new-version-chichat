@@ -10,13 +10,15 @@ import LandingPage from '../pages/Landing/LandingPage'
 
 function AppRouter() {
     return (
-        <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/feeds" element={<Feeds />} />
-        </Routes>
+        <>
+            <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/feeds" element={<Feeds />} />
+            </Routes>
+        </>
     )
 }
 

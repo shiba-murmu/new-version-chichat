@@ -44,12 +44,16 @@ function ForLargeScreen() {
                     <div>
                         <span className='font-extrabold text-4xl subheading-style text-amber-300'>ChiChat account</span>
                     </div>
-                    <div className='border rounded-2xl px-4 py-2 hover:bg-white hover:text-black hover:cursor-pointer'>
-                        <span className='text-md'>Get started</span>
-                    </div>
-                    <div className='border rounded-2xl px-4 py-2 hover:bg-white hover:text-black hover:cursor-pointer'>
-                        <span>Already have an account</span>
-                    </div>
+                    <Link to={'/signup'}>
+                        <div className='border rounded-2xl px-4 py-2 hover:bg-white hover:text-black hover:cursor-pointer'>
+                            <span className='text-md'>Get started</span>
+                        </div>
+                    </Link>
+                    <Link to={'/login'}>
+                        <div className='border rounded-2xl px-4 py-2 hover:bg-white hover:text-black hover:cursor-pointer'>
+                            <span className='text-md'>Already have an account</span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </>
