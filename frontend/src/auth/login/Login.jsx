@@ -55,10 +55,10 @@ function Login() {
                                         lock && (
                                             <motion.div
                                                 key="lock"
-                                                initial={{ opacity: 0, rotate: -20, scale: 0.9 }}
+                                                initial={{ opacity: 0, rotate: 0, scale: 0.9 }}
                                                 animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                                exit={{ opacity: 0, rotate: 20, scale: 0.9 }}
-                                                transition={{ duration: 2 }}
+                                                exit={{ opacity: 0, rotate: 0, scale: 0.9 }}
+                                                transition={{ duration: 1 }}
                                             >
                                                 <LockIcon />
                                             </motion.div>
@@ -68,10 +68,10 @@ function Login() {
                                         unlock && (
                                             <motion.div
                                                 key="unlock"
-                                                initial={{ opacity: 0, rotate: 20, scale: 0.9 }}
+                                                initial={{ opacity: 0, rotate: 0, scale: 0.9 }}
                                                 animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                                exit={{ opacity: 0, rotate: -20, scale: 0.9 }}
-                                                transition={{ duration: 2 }}
+                                                exit={{ opacity: 0, rotate: 0, scale: 0.9 }}
+                                                transition={{ duration: 1 }}
                                             >
                                                 <UnlockIcon />
                                             </motion.div>
@@ -83,13 +83,14 @@ function Login() {
                             <form action="" className='flex flex-col md:justify-center md:items-center gap-3 w-60'>
                                 <input type="text" placeholder='Email or username' className='border input-style md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' />
                                 <input type="password" placeholder='Password' className='rounded md:w-80 text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] border p-2.5 ' />
-                                {/* <label htmlFor="">U</label> */}
                                 <button type='submit' className='custom-background hover:bg-blue-600 md:w-80  text-sm  md:text-md hover:cursor-pointer text-white p-2.5 rounded '>Sign in</button>
+                                {/* Desktop view */}
                                 <p className='hidden md:block text-sm md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>Forgot your password ?</p>
                                 <Link to={'/signup'} className='hidden md:block'>
                                     <p className='text-sm'>Don't have an account ? <span className='text-[#7257ff] hover:cursor-pointer'>Sign up</span></p>
                                 </Link>
                             </form>
+                            {/* Mobile view */}
                             <p className='md:hidden text-sm text-[#7257ff] hover:cursor-pointer'>Forgot your password ?</p>
                             <Link to={'/signup'} className='md:hidden'>
                                 <p className='text-sm'>Don't have an account ? <span className='text-[#7257ff] hover:cursor-pointer'>Sign up</span></p>
