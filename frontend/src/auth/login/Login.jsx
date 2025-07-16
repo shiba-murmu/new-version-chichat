@@ -4,11 +4,12 @@ import './Login.css';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Image from '../../assets/images/conversation.png';
 
 function UnlockIcon() {
     return (
         <>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{ color: "#7257ff" }} class="size-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{ color: "#7257ff" }} className="size-4">
                 <path d="M18 1.5c2.9 0 5.25 2.35 5.25 5.25v3.75a.75.75 0 0 1-1.5 0V6.75a3.75 3.75 0 1 0-7.5 0v3a3 3 0 0 1 3 3v6.75a3 3 0 0 1-3 3H3.75a3 3 0 0 1-3-3v-6.75a3 3 0 0 1 3-3h9v-3c0-2.9 2.35-5.25 5.25-5.25Z" />
             </svg>
         </>
@@ -17,8 +18,8 @@ function UnlockIcon() {
 function LockIcon() {
     return (
         <>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{ color: "#7257ff" }} class="size-4">
-                <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style={{ color: "#7257ff" }} className="size-4">
+                <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clipRule="evenodd" />
             </svg>
         </>
     )
@@ -35,12 +36,16 @@ function Login() {
 
         return () => clearInterval(interval);
     }, []);
+
+    useEffect(() => {
+        console.log('Runs one time.')
+    })
     return (
         <>
             <div className='min-h-screen  flex flex-col items-center justify-start md:justify-center'>
                 <div className='md:h-full  md:w-full md:grid md:grid-cols-[35%_65%]'>
                     <div className='hidden md:block md:w-[100%]  md:h-[100vh]'>
-                        <img src="https://images.pexels.com/photos/8424514/pexels-photo-8424514.jpeg" alt="" className='h-[20vh] md:h-[100vh] md:w-[100%]' />
+                        <img src='' alt="" className='h-[20vh] md:h-[100vh] md:w-[100%]' />
                     </div>
                     <div className='md:h-[100vh] h-[70vh] flex justify-center items-center '>
                         <div className='flex flex-col items-center gap-5 md:gap-6'>

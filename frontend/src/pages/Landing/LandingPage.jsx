@@ -1,24 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './landingStyle.css'
+import Image from '../../assets/images/conversation.gif'
 
 function ForSmallScreen() {
     return (
         <>
-            <div className='rowdies-bold text-red-500 text-5xl'>
+            <div className='rowdies-bold text-blue-800 text-6xl'>
                 ChiChat
             </div>
-            <div className='my-5'>
-                <img src="https://images.pexels.com/photos/8054835/pexels-photo-8054835.jpeg" alt="" className='h-70 w-50 rounded-xl md:w-96' />
+            <div className='text-center'>
+                <span className='text-sm'>Stay close with the people who matter.<br />Because life’s better when <br /> you stay  <span className='text-blue-800 border-l px-1 bg-blue-100'>connected</span>.</span>
             </div>
-            <div className='flex justify-center flex-col items-center gap-4'>
+            <div className='my-5'>
+                <img src={Image} alt="" className='h-60 w-52 rounded-xl md:w-96' />
+            </div>
+            <div className='flex justify-center flex-col items-center gap-2'>
                 <Link to={'/signup'}>
-                    <div className='border px-4 py-2 text-sm rounded-full text-white bg-blue-600'>
+                    <div className='border  py-2 w-3xs flex justify-center text-sm rounded-full text-white bg-blue-800'>
                         Get started
                     </div>
                 </Link>
                 <Link to={'/login'}>
-                    <div className='border px-4 text-sm py-2 rounded-full'>
+                    <div className='border text-blue-800 border-blue-800 px-4 w-3xs flex justify-center text-sm py-2 rounded-full'>
                         Already have an account
                     </div>
                 </Link>
