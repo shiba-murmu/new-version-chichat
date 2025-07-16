@@ -15,6 +15,13 @@
   font-style: normal;
 }
 
+/* subheading styles */
+.subheading-style {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
 /* One more custome text addded*/
 .rowdies-light {
     font-family: "Rowdies", sans-serif;
