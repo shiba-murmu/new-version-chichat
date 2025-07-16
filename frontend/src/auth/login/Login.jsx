@@ -51,7 +51,7 @@ function Login() {
                         <div className='flex flex-col items-center gap-5 md:gap-6'>
                             <div className='hidden md:flex justify-center flex-col items-center'>
                                 <span className=' text-3xl  md:text-5xl font-bold mb-1 text-[#7257ff]'>Welcome back !</span>
-                                <p className='text-sm md:text-md text-center'>Stay close with the people who matter.<br />Because life’s better when you stay connected.</p>
+                                <p className='text-sm md:text-md text-center'>Stay close with the people who matter. Because<br />Because life’s better when you stay connected.</p>
                             </div>
                             <div className='md:hidden flex flex-col justify-center items-center'>
                                 <span className='text-3xl font-bold text-[#7257ff]'>Welcome back !</span>
@@ -85,13 +85,13 @@ function Login() {
 
                                 </span>
                             </div>
-                            <form action="" className='flex flex-col justify-center items-center md:justify-center md:items-center gap-3 w-60'>
-                                <input type="text" placeholder='Email or username' className='border input-style md:w-70  text-sm md:text-md border-[#7257ff] rounded w-[16rem] p-2.5 focus:outline-[#7257ff]' />
-                                <input type="password" placeholder='Password' className='rounded md:w-70 text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5 ' />
-                                <button type='submit' className='custom-background hover:bg-blue-600 md:w-70  text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
+                            <form action="" className='flex flex-col justify-center items-center md:justify-center md:items-center gap-2 w-60'>
+                                <input type="text" placeholder='Email or username' className='border input-style md:w-80   text-sm md:text-md border-[#7257ff] rounded w-[16rem] p-2.5 focus:outline-[#7257ff]' />
+                                <input type="password" placeholder='Password' className='rounded md:w-80  text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5 ' />
+                                <button type='submit' className='custom-background hover:bg-blue-600 md:w-80   text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
                                 {/* Desktop view */}
                                 <p className='hidden md:block text-md md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>Forgot your password ?</p>
-                                <Link to={'/signup'} className='hidden md:block md:w-70'>
+                                <Link to={'/signup'} className='hidden md:block md:w-80 text-center '>
                                     <p className='text-md'>Don't have an account ? <span className='text-[#7257ff] hover:cursor-pointer'>Sign up</span></p>
                                 </Link>
                             </form>
