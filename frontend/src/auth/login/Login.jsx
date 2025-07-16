@@ -43,15 +43,15 @@ function Login() {
     return (
         <>
             <div className='min-h-screen  flex flex-col items-center justify-start md:justify-center'>
-                <div className='md:h-full  md:w-full md:grid md:grid-cols-[35%_65%]'>
-                    <div className='hidden md:block md:w-[100%]  md:h-[100vh]'>
-                        <img src='' alt="" className='h-[20vh] md:h-[100vh] md:w-[100%]' />
+                <div className='md:h-[100vh]  md:w-full md:flex'>
+                    <div className='hidden md:block md:w-1/2  '>
+                        <img src='https://images.pexels.com/photos/3184435/pexels-photo-3184435.jpeg' alt="" className='h-[20vh] object-cover md:h-[100vh] md:w-[100%]' />
                     </div>
-                    <div className='md:h-[100vh] h-[70vh] flex justify-center items-center '>
+                    <div className='h-[75vh] md:h-[85vh] md:w-1/2 flex justify-center items-center '>
                         <div className='flex flex-col items-center gap-5 md:gap-6'>
                             <div className='hidden md:flex justify-center flex-col items-center'>
                                 <span className=' text-3xl  md:text-5xl font-bold mb-1 text-[#7257ff]'>Welcome back !</span>
-                                <p className='text-sm text-center'>Stay close with the people who matter.<br />Because life’s better when you stay connected.</p>
+                                <p className='text-sm md:text-md text-center'>Stay close with the people who matter.<br />Because life’s better when you stay connected.</p>
                             </div>
                             <div className='md:hidden flex flex-col justify-center items-center'>
                                 <span className='text-3xl font-bold text-[#7257ff]'>Welcome back !</span>
@@ -86,13 +86,13 @@ function Login() {
                                 </span>
                             </div>
                             <form action="" className='flex flex-col justify-center items-center md:justify-center md:items-center gap-3 w-60'>
-                                <input type="text" placeholder='Email or username' className='border input-style md:w-80  text-sm md:text-md border-[#7257ff] rounded w-[16rem] p-2.5 focus:outline-[#7257ff]' />
-                                <input type="password" placeholder='Password' className='rounded md:w-80 text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5 ' />
-                                <button type='submit' className='custom-background hover:bg-blue-600 md:w-80  text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
+                                <input type="text" placeholder='Email or username' className='border input-style md:w-70  text-sm md:text-md border-[#7257ff] rounded w-[16rem] p-2.5 focus:outline-[#7257ff]' />
+                                <input type="password" placeholder='Password' className='rounded md:w-70 text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5 ' />
+                                <button type='submit' className='custom-background hover:bg-blue-600 md:w-70  text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
                                 {/* Desktop view */}
-                                <p className='hidden md:block text-sm md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>Forgot your password ?</p>
-                                <Link to={'/signup'} className='hidden md:block'>
-                                    <p className='text-sm'>Don't have an account ? <span className='text-[#7257ff] hover:cursor-pointer'>Sign up</span></p>
+                                <p className='hidden md:block text-md md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>Forgot your password ?</p>
+                                <Link to={'/signup'} className='hidden md:block md:w-70'>
+                                    <p className='text-md'>Don't have an account ? <span className='text-[#7257ff] hover:cursor-pointer'>Sign up</span></p>
                                 </Link>
                             </form>
                             {/* Mobile view */}
