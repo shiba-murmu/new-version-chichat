@@ -17,3 +17,5 @@ color -- #1c398e
 color -- white
 
 bringal- color #7257ff
+
+light blackish color - #e0dfe4
