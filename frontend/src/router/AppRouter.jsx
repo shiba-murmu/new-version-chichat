@@ -15,7 +15,7 @@ import Footer from '../components/Footer/Footer'
 function AppRouter() {
     const location = useLocation()
     // list of pages where don't want the footer
-    const pages = ['/login', '/signup', '/chats']
+    const pages = ['/','/login', '/signup', '/chats']
 
     const shouldShowFooter = !pages.includes(location.pathname)
     return (
