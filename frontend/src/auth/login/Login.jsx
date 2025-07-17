@@ -104,7 +104,7 @@ function Login() {
                                         }
                                     </div>
                                 </div>
-                                <Link to={'/feeds'}>
+                                <Link to={'/home'}>
                                     <button type='submit' className='custom-background hover:bg-blue-600 md:w-80 text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
 
                                 </Link>
