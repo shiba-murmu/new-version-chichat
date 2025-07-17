@@ -14,7 +14,7 @@ import Notification from '../features/Notifications/Notification'
 import ProfileSearching from '../features/Search/ProfileSearching'
 // import Navbar from '../components/Navbar/navbar'
 import Footer from '../components/Footer/Footer'
-import Feeds from '../features/feeds/Feeds'
+// import Feeds from '../features/feeds/Feeds'
 function AppRouter() {
     const location = useLocation()
     // list of pages where don't want the footer
