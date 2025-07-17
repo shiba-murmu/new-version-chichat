@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 function Footer() {
     return (
-        <div className='fixed bottom-0 left-0 right-0'>
-            <div className='flex justify-between mx-5 rounded-t-2xl items-center p-5 bg-white border-t border-gray-100'>
+        <div className='fixed bottom-0 left-0 md:left-80 right-0'>
+            <div className='flex justify-between mx-5 md:w-[50vw] rounded-t-4xl items-center p-5 bg-gray-50 border-t border-gray-100'>
                 <section>
                     {/* For home */}
                     <Link to={'/home'}>
