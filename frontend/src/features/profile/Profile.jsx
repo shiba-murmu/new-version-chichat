@@ -22,20 +22,21 @@ function Sidebar({ onClose }) {
         <>
             <div className='absolute top-0 left-0 w-full h-full sidebar-overlay-background'>
                 {/* Sidebar/Menu Container */}
-                <div ref={SidebarRef} className="fixed right-0 top-0 w-64 h-full bg-white shadow-lg p-6 z-60 animate-slide-in">
-                    <h2 className="text-lg font-semibold mb-4">Menu</h2>
+                <div ref={SidebarRef} className="fixed rounded-l-4xl right-0 top-0 w-64 h-full bg-white shadow-lg  z-60 animate-slide-in">
+                    <div className='flex justify-end h-12 md:h-14 p-2 bg-[#e0dfe4] rounded-tl-4xl border-gray-200 text-sm'>
+                        <button onClick={onClose}>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  width="24" height="24" fill="currentColor" className="size-7 md:size-9">
+                                <path fillRule="evenodd" strokeWidth={2} d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
                     <ul className="space-y-2">
                         <li className="hover:text-blue-500 cursor-pointer">Home</li>
                         <li className="hover:text-blue-500 cursor-pointer">Profile</li>
                         <li className="hover:text-blue-500 cursor-pointer">Settings</li>
                         <li className="hover:text-blue-500 cursor-pointer">Logout</li>
                     </ul>
-                    <button
-                        onClick={onClose}
-                        className="mt-6 bg-red-500 text-white px-4 py-2 rounded"
-                    >
-                        Close Menu
-                    </button>
+
                 </div>
             </div>
         </>
