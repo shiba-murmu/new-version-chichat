@@ -106,7 +106,6 @@ function Login() {
                                 </div>
                                 <Link to={'/home'}>
                                     <button type='submit' className='custom-background hover:bg-blue-600 md:w-80 text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
-
                                 </Link>
                                 {/* Desktop view */}
                                 <p className='hidden md:block text-md md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>Forgot your password ?</p>
