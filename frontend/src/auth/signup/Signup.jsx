@@ -77,7 +77,7 @@ function Signup() {
                             </div>
                             <input type="password" placeholder='Password' className='border  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' />
                             <input type="password" placeholder='Confirm password' className='border  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' />
-                            <button className='bg-[#7257ff] text-white hover:cursor-pointer  rounded p-2.5'>Sign up</button>
+                            <button className='bg-[#7257ff] text-white hover:cursor-pointer text-sm md:text-md rounded p-2.5'>Sign up</button>
                             <Link to={'/login'} className='text-center'>
                                 <p className='text-sm md:text-md'>Already have an account? <span className='text-[#7257ff]'>Log in</span></p>
                             </Link>
