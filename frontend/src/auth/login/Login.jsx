@@ -88,7 +88,10 @@ function Login() {
                             <form action="" className='flex flex-col justify-center items-center md:justify-center md:items-center gap-4 w-60'>
                                 <input type="text" placeholder='Email or username' className='border input-style md:w-80   text-sm md:text-md border-[#7257ff] rounded w-[16rem] p-2.5 focus:outline-[#7257ff]' />
                                 <input type="password" placeholder='Password' className='rounded md:w-80  text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5 ' />
-                                <button type='submit' className='custom-background hover:bg-blue-600 md:w-80 text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
+                                <Link to={'/account'}>
+                                    <button type='submit' className='custom-background hover:bg-blue-600 md:w-80 text-sm md:text-md hover:cursor-pointer w-[16rem] text-white p-2.5 rounded '>Sign in</button>
+
+                                </Link>
                                 {/* Desktop view */}
                                 <p className='hidden md:block text-md md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>Forgot your password ?</p>
                                 <Link to={'/signup'} className='hidden md:block md:w-80 text-center '>
