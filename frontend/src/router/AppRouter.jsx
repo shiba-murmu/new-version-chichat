@@ -8,9 +8,9 @@ import Profile from '../features/profile/Profile'
 import LandingPage from '../pages/Landing/LandingPage'
 import ChatsList from '../features/chats/ChatsList'
 import Notification from '../features/Notifications/Notification'
-import Feeds from '../features/feeds/Feeds'
 import ProfileSearching from '../features/Search/ProfileSearching'
 import Footer from '../components/Footer/Footer'
+import Home from '../pages/Home/Home'
 
 function AppRouter() {
     const location = useLocation()
@@ -25,10 +25,9 @@ function AppRouter() {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/profile" element={<Profile />} />
-                {/* <Route path="/feeds" element={<Feeds />} /> */}
-                <Route path="/feed" element={<Feeds />} />
                 <Route path="/chats" element={<ChatsList />} />
                 <Route path="/notifications" element={<Notification />} />
                 <Route path="/search" element={<ProfileSearching />} />
