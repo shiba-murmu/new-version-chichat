@@ -28,8 +28,7 @@ function AppRouter() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/profile" element={<Profile />} />
                 {/* <Route path="/feeds" element={<Feeds />} /> */}
-                {/* <Route path="/feeds" element={<Feeds />} /> */}
-                <Route path="/feeds" element={<Feeds />} />
+                <Route path="/feed" element={<Feeds />} />
                 <Route path="/chats" element={<ChatsList />} />
                 <Route path="/notifications" element={<Notification />} />
                 <Route path="/search" element={<ProfileSearching />} />
