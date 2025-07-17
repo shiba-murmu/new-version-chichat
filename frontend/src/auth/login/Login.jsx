@@ -82,7 +82,6 @@ function Login() {
                                             </motion.div>
                                         )
                                     }
-
                                 </span>
                             </div>
                             <form action="" className='flex flex-col justify-center items-center md:justify-center md:items-center gap-4 w-60'>

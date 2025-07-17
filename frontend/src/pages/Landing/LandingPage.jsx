@@ -10,7 +10,7 @@ function ForSmallScreen() {
                 ChiChat
             </div>
             <div className='text-center'>
-                <span className='text-sm'>Stay close with the people who matter.<br />Because life’s better when <br /> you stay  <span className='text-[#7257ff] border-l px-1 bg-blue-100'>connected</span>.</span>
+                <span className='text-sm'>Stay close with the people who matter.<br />Because life’s better when <br /> you stay  <span className='text-[#7257ff] border-l px-1 rounded-r bg-blue-100'>connected</span></span>
             </div>
             <div className='my-5'>
                 <img src={Image} alt="" className='h-60 w-56 rounded-xl md:w-96' />

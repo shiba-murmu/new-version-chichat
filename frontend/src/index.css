@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* Animation for slide-in */
+@layer utilities {
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
+
+/* Custom font is added here */
 * {
   /* Font is added here */
   font-family: "Montserrat", sans-serif;
@@ -23,23 +41,23 @@
 
 /* One more custome text addded*/
 .rowdies-light {
-    font-family: "Rowdies", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-  }
-  
-  .rowdies-regular {
-    font-family: "Rowdies", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .rowdies-bold {
-    font-family: "Rowdies", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  .custom-background {
-    background-color: #7257ff;
-  }
+  font-family: "Rowdies", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.rowdies-regular {
+  font-family: "Rowdies", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rowdies-bold {
+  font-family: "Rowdies", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.custom-background {
+  background-color: #7257ff;
+}
