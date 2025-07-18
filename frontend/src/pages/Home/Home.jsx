@@ -1,6 +1,8 @@
 import React from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import { Link } from 'react-router-dom'
+// import PostingCard from '../../components/PostingCard/PostingCard'
+// import { useLocation } from 'react-rout
 function PostingCard() {
     return (
         <>
@@ -37,9 +39,10 @@ function PostingCard() {
 }
 
 function Home() {
+    
     return (
         <>
-            <div className='min-h-screen w-screen'>
+            <div className='max-h-[40.4rem] w-screen overflow-scroll'>
                 <Navbar />
                 <PostingCard />
                 <PostingCard />
