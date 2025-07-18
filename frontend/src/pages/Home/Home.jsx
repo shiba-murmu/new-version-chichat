@@ -10,8 +10,10 @@ function PostingCard() {
                 {/* post card */}
                 <div className='flex items-center px-1 py-1 gap-3'>
                     <section>
-                        <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                            className='w-10 h-10 rounded-full' alt="" />
+                        <Link to='/user/1'>
+                            <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                className='w-10 h-10 rounded-full' alt="" />
+                        </Link>
                     </section>
                     <section className='flex flex-col'>
                         {/* <h1>John Doe</h1> */}
@@ -39,7 +41,7 @@ function PostingCard() {
 }
 
 function Home() {
-    
+
     return (
         <>
             <div className='max-h-[40.4rem] w-screen overflow-scroll'>
