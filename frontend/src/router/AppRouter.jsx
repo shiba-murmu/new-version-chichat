@@ -15,7 +15,7 @@ import Followers_Profile from '../features/Followers/Followers_profile/Followers
 
 function AppRouter() {
     const location = useLocation()
-    // list of pages where don't want the footer
+    // list of pages where footer not visible
     const pages = ['/','/login', '/signup', '/chats']
 
     const shouldShowFooter = !pages.includes(location.pathname)
