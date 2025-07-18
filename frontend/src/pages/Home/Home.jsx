@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // import PostingCard from '../../components/PostingCard/PostingCard'
 // import { useLocation } from 'react-rout
 function PostingCard() {
+    // Mbile version home.
     return (
         <>
             <div>
@@ -44,12 +45,13 @@ function Home() {
 
     return (
         <>
-            <div className='max-h-[40.4rem] w-screen overflow-scroll'>
-                <Navbar />
-                <PostingCard />
-                <PostingCard />
-                <PostingCard />
-                <PostingCard />
+            <div className='max-h-[40.4rem] md:max-h-[30.5rem]
+             md:w-full overflow-scroll'>
+                    <Navbar />
+                    <PostingCard />
+                    <PostingCard />
+                    <PostingCard />
+                    <PostingCard />
             </div>
         </>
     )

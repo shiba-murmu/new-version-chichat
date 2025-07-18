@@ -12,6 +12,7 @@ import ProfileSearching from '../features/Search/ProfileSearching'
 import Footer from '../components/Footer/Footer'
 import Home from '../pages/Home/Home'
 import Followers_Profile from '../features/Followers/Followers_profile/Followers_Profile'
+import DesktopHome from '../pages/Home/desktopVersionHome/DesktopHome'
 
 function AppRouter() {
     const location = useLocation()
@@ -33,6 +34,8 @@ function AppRouter() {
                 <Route path="/notifications" element={<Notification />} />
                 <Route path="/search" element={<ProfileSearching />} />
                 <Route path="/user/:id" element={<Followers_Profile />} />
+                <Route path="/desktop-home" element={<DesktopHome />} />
+
             </Routes>
         </>
     )

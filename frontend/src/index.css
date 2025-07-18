@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Custom scroll bar */
+
+
 /* Animation for slide-in */
 @layer utilities {
   .animate-slide-in {
@@ -15,7 +18,6 @@
     }
   }
 }
-
 
 /* Custom font is added here */
 * {
