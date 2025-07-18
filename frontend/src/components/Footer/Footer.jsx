@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 function Footer() {
     return (
-        <div className='fixed bottom-0 left-0 md:left-80 right-0'>
+        <div className='fixed bottom-0 left-0 md:bottom-0 md:left-0 md:right-0 right-0'>
             <div className='flex justify-around md:justify-around mx-auto md:w-[50vw]  shadow-md shadow-gray-400 items-center py-5 md:p-5 bg-[#e0dfe4] border-t border-gray-100'>
                 <section>
                     {/* For home */}
