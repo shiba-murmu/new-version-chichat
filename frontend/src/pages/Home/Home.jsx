@@ -47,7 +47,7 @@ function Home() {
         <>
             <Navbar />
 
-            <div className="flex flex-col min-h-screen bg-amber-100">
+            <div className="flex flex-col min-h-screen ">
                 <div className="flex-grow overflow-y-auto px-2 py-4 md:w-[40rem] md:mx-auto custom-scrollbar pb-20">
                     {/* Add enough bottom padding to prevent hiding behind footer */}
                     <PostingCard />

@@ -15,7 +15,7 @@ function NotificationNavbar() {
                     </Link>
                 </div>
                 <div>
-                    <span className='font-bold'>Notifications</span>
+                    <span className=''>Notifications</span>
                 </div>
             </div>
         </>
