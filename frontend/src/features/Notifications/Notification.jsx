@@ -24,8 +24,25 @@ function NotificationNavbar() {
 
 function UserNotification() {
     const [isOpen, setIsOpen] = useState(false);
+    const notificationRef = useRef(null);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    });
     const toggleMenu = () => {
+
         setIsOpen(!isOpen);
+    }
+    const handleDelete = () => {
+        console.log('delete');
+        setIsOpen(false);
     }
     return (
         <>
@@ -48,18 +65,19 @@ function UserNotification() {
             {/* Showing conditional based model UI. */}
             {
                 isOpen && (
+
                     <div className='absolute top-0 left-0 z-100 flex justify-center items-center h-[100vh] w-screen px-5'>
-                        <div className='border w-64 border-[#c5c5c5] h-30 rounded-2xl flex justify-center items-center p-3 gap-3 flex-col'>
+                        <div ref={notificationRef} className='border w-64 border-[#c5c5c5] h-30 rounded-2xl flex justify-center items-center p-3 gap-3 flex-col'>
                             <p className='text-sm text-center'>Are you sure want to delete the notification ?</p>
                             <div>
-                                <button className='mx-2 bg-[#7257ff] text-sm rounded-full w-20 py-1 text-white' onClick={toggleMenu}>delete</button>
+                                <button className='mx-2 bg-[#7257ff] text-sm rounded-full w-20 py-1 text-white' onClick={handleDelete}>delete</button>
                                 <button className='mx-2 bg-[#9b9b9b] text-sm rounded-full w-20 py-1 text-white' onClick={toggleMenu}>No</button>
                             </div>
                         </div>
                     </div>
                 )
             }
-            
+
         </>
     )
 }
