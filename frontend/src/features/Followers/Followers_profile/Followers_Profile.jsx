@@ -74,7 +74,7 @@ function Followers_Profile() {
                         </button>
                     </div>
                     <div>
-                        <img src="https://images.pexels.com/photos/31978812/pexels-photo-31978812.jpeg" alt=""
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUrkffbf5sBvycTlHcxVz2HIs1sKUsSvfzOaCmSjA6OK7s9hirzR9QC776Ca6FAjX_lNs&usqp=CAU" alt=""
                             className='h-32 md:h-45 w-32 md:w-45 rounded-full border-4 object-cover border-white mx-auto mt-10' />
                     </div>
                     <div className='text-sm md:text-md text-center '>
