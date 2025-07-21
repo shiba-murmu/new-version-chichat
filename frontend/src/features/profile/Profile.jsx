@@ -1,6 +1,7 @@
 import React from 'react'
 import './profile.css'
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -26,7 +27,7 @@ function Sidebar({ onClose }) {
                     <div className='flex justify-end h-12 md:h-14 p-2 shadow-md bg-[#e0dfe4] rounded-tl-4xl border-gray-200 text-sm'>
                         {/* side bar header */}
                         <button onClick={onClose}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  width="24" height="24" fill="currentColor" className="size-7 md:size-9">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="size-7 md:size-9">
                                 <path fillRule="evenodd" strokeWidth={2} d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                             </svg>
                         </button>
@@ -56,7 +57,12 @@ function Profile() {
                 {/* profile picture container  */}
                 <div className='flex flex-col h-120 md:h-[33rem] bg-[#e0dfe4] shadow-md shadow-gray-400 rounded-b-full md:rounded-br-4xl'>
                     {/* <button></button> */}
-                    <div className='flex justify-end h-12 md:h-14 p-2 border-b border-[#c3c3c3] shadow shadow-gray-350 text-sm'>
+                    <div className='flex justify-between items-center h-12 md:h-14 p-2 border-b border-[#c3c3c3] shadow shadow-gray-350 text-sm'>
+                        <Link to={'/home'}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="size-6 md:size-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                            </svg>
+                        </Link>
                         <button onClick={toggleMenu} className='hover:cursor-pointer'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="size-7 md:size-9">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
