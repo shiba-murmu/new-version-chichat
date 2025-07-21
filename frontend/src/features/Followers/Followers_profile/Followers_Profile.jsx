@@ -48,9 +48,13 @@ function Followers_profile_sidebar({ onClose }) {
 function Followers_Profile() {
     const { id } = useParams();
     const [isOpen, setIsOpen] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(false);
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+    const toggleMenuToFollow = () => {
+        setIsFollowing(!isFollowing);
+    }
     return (
         <>
             <div className='min-h-screen w-screen'>
@@ -73,27 +77,30 @@ function Followers_Profile() {
                         <img src="https://images.pexels.com/photos/31978812/pexels-photo-31978812.jpeg" alt=""
                             className='h-32 md:h-45 w-32 md:w-45 rounded-full border-4 object-cover border-white mx-auto mt-10' />
                     </div>
-                    <div className='text-sm md:text-md text-center'>
+                    <div className='text-sm md:text-md text-center '>
                         {/* profile details container */}
                         <section>
                             <h1 className='text-2xl md:text-4xl font-bold text-center'>John Doe</h1>
                             <p className='text-center text-xs md:text-sm text-gray-700'>@johndoe</p>
                             <p className='text-center'>UI/UX Designer</p>
                         </section>
-                        <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
-                            <section className='flex flex-col justify-center'>
-                                <section className=''>299</section>
-                                <section>Followers</section>
+                        {
+                            isFollowing ? <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
+                                {/* this section is hidden for sometimes/ */}
+                                <section className='flex flex-col justify-center'>
+                                    <section className=''>299</section>
+                                    <section>Followers</section>
+                                </section>
+                                <section className='flex flex-col justify-center'>
+                                    <section>400</section>
+                                    <section>Following</section>
+                                </section>
                             </section>
-                            <section className='flex flex-col justify-center'>
-                                <section>400</section>
-                                <section>Following</section>
-                            </section>
-                        </section>
-                        <section>
-                            <section>30</section>
-                            <section>Posts</section>
-                        </section>
+                                :
+                                <section className='flex justify-center mt-2'>
+                                    <button type='button' onClick={toggleMenuToFollow} className='bg-[#7257ff] text-sm  rounded-full text-white font-bold py-2 px-4'>Follow</button>
+                                </section>
+                        }
                     </div>
                 </div>
 
