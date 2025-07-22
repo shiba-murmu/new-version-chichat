@@ -95,7 +95,7 @@ function Inbox_message() {
                                 <div
                                     className={`relative p-3 pb-6 rounded-lg shadow-md break-words ${ // Added pb-6 for timestamp space
                                         msg.sender === 'user1'
-                                            ? 'bg-blue-500 text-white rounded-br-none pr-10' // Added pr-10
+                                            ? 'bg-[#818CF8] text-white rounded-br-none pr-10' // Added pr-10
                                             : 'bg-white text-gray-800 rounded-bl-none pl-10' // Added pl-10
                                         }`}
                                 >
@@ -124,7 +124,7 @@ function Inbox_message() {
                     />
                     <button
                         onClick={handleSendMessage}
-                        className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center"
+                        className="bg-[#818CF8] hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center"
                         aria-label="Send message"
                     >
                         {/* Send icon (SVG) */}
