@@ -17,9 +17,12 @@ import Inbox_message from '../features/inbox/Inbox_message'
 function AppRouter() {
     const location = useLocation()
     // list of pages where footer not visible
-    const pages = ['/','/login', '/signup', '/chats']
+    const pages = ['/','/login', '/signup', '/chats', '/inbox']
 
-    const shouldShowFooter = !pages.includes(location.pathname)
+    // match the entire exact path or sub - path (with /) or '/inbox/:id'
+    const shouldShowFooter = !pages.some(
+        route => location.pathname === route || location.pathname.startsWith(route + '/')
+    )
     return (
         <>
             {/* Conditional footer rendring */}
