@@ -57,7 +57,7 @@ function Inbox_message() {
 
     return (
         <div className="min-h-screen from-blue-100 to-purple-100 flex items-start justify-center lg:p-8 font-inter">
-            <div className="w-full max-w-4xl bg-white shadow-2xl flex flex-col h-[85vh] sm:h-[90vh] overflow-hidden">
+            <div className="w-full max-w-4xl bg-white shadow-2xl flex flex-col h-[100vh] sm:h-[90vh] overflow-hidden">
                 {/* Chat Header */}
                 <div className="bg-gradient-to-r  p-2 shadow-md flex items-center justify-between">
                     <Link to={'/user/1'}>
