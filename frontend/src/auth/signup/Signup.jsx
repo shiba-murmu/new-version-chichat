@@ -7,6 +7,7 @@ import validator from 'validator';
 import { toast } from 'react-toastify';
 
 
+
 const images = [
     'https://images.pexels.com/photos/3184435/pexels-photo-3184435.jpeg',
     'https://images.pexels.com/photos/1687093/pexels-photo-1687093.jpeg',
@@ -84,6 +85,8 @@ function Signup() {
 
     // /////////// OTP popup validatior ///////////
     const [isOTPpopup, setIsOTPpopup] = useState(false);
+
+    const API_URL = import.meta.env.VITE_API_URL; 
 
     const toggleEyeConfirmPassword = () => {
         // for password confirm password ....
