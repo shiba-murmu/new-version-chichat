@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+// import { ToastContainer } from 'react-toastify';
 // import pages
 import Signup from '../auth/signup/Signup'
 import Login from '../auth/login/Login'
