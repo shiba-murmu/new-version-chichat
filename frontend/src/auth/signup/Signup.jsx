@@ -40,6 +40,36 @@ function ImageSlider({ images }) {
         </div>
     )
 }
+
+function OTP_generate_registration() {
+    return (
+        <>
+            <div className='bg-[#7257ff] text-sm p-5 w-70 gap-3 flex flex-col items-center  rounded-2xl text-white text-center py-10'>
+                <div>
+                    <span className='text-lg font-bold'>OTP sent successfully</span>
+                </div>
+                <div>
+                    <p>Verify your email address. Please check your Gmail account to verify your account.</p>
+                </div>
+                <div className='flex flex-col gap-3'>
+                    <div>
+                        <input type="number" placeholder='Enter otp' className='border  border-[#ffffff] focus:outline-[#a9a9a9] p-2 rounded-md' />
+                    </div>
+                    <div className='flex gap-3'>
+                        <button className='bg-[#ffffff] text-sm w-[50%] text-[#7257ff] p-1 rounded-md'>
+                            Verify
+                        </button>
+                        <button className='bg-[#ffffff] text-sm w-[50%] text-[#7257ff] p-1 rounded-md'>
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+
 function Signup() {
     const [isEyeOpened, setIsEyeOpened] = useState(false); // for toggle eye
     const [isEyeOpenedConfirmPassword, setIsEyeOpenedConfirmPassword] = useState(false);
@@ -52,7 +82,8 @@ function Signup() {
     const [isUsernameValid, setIsUsernameValid] = useState(false);
     const [usernameError, setUsernameError] = useState('');
 
-
+    // /////////// OTP popup validatior ///////////
+    const [isOTPpopup, setIsOTPpopup] = useState(false);
 
     const toggleEyeConfirmPassword = () => {
         // for password confirm password ....
@@ -91,6 +122,9 @@ function Signup() {
     }, [formData.email])
 
     useEffect(() => {
+
+        formData.username = formData.username.trim(); // removing leading spaces and trailing spaces..
+
         if (formData.username == '') {
             setUsernameError('Enter valid username');
             setIsUsernameValid(false);
@@ -116,13 +150,11 @@ function Signup() {
         }
     }, [formData.username])
 
-   
-
     // Update form values
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value 
         });
     };
 
@@ -135,12 +167,8 @@ function Signup() {
                 // Passwords match
                 // Do something with the form data, e.g., send it to the server
                 // some other code 
-                try {
-                    console.log(formData)
-                }
-                catch (error) {
-                    console.log(error)
-                }
+                setIsOTPpopup(true);
+                // alert('An OTP has been sent to you mobile number')
             } else {
                 toast.error('Passwords do not match.');
             }
@@ -152,7 +180,12 @@ function Signup() {
 
     }
     return (
-        <>
+        <>  {
+                // If otp popup is true then it will show popup.. here 
+            isOTPpopup && <div className='min-h-[60vh] absolute top-0 left-0 right-0 z-50 flex justify-center items-end '>
+                <OTP_generate_registration />
+            </div>
+        }
             <div className='min-h-screen flex flex-col md:flex-row  items-center justify-start'>
                 <div className='hidden md:block w-1/2'>
                     <motion.div
@@ -184,7 +217,7 @@ function Signup() {
                                 <input type="text" placeholder='Username' name='username'
                                     onChange={handleChange}
                                     value={formData.username}
-                                    className='border required  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' required/>
+                                    className='border required  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' required />
                                 {/* Here username validations will be done. Where username is already exist or not */}
                                 {
                                     isUsernameValid ? <label htmlFor="" className='text-xs text-[#7257ff] flex gap-1 items-center'>{usernameError}
@@ -227,7 +260,7 @@ function Signup() {
                                 <input type={isEyeOpenedConfirmPassword ? 'text' : 'password'}
                                     name='confirm_password' onChange={handleChange} value={formData.confirm_password}
                                     placeholder='Confirm Password' className=' required rounded md:w-80  text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5' required />
-                                
+
                                 <div className='absolute inset-y-0 right-3 flex items-center'>
                                     {
                                         isEyeOpenedConfirmPassword ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.2" stroke="currentColor" className="size-5 md:size-6 hover:cursor-pointer" style={{ color: '#7257ff' }} onClick={toggleEyeConfirmPassword}>
