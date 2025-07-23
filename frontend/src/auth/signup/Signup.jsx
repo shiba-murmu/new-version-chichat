@@ -154,20 +154,25 @@ function Signup() {
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value 
+            [e.target.name]: e.target.value
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.password >= 8 && formData.password.length <= 15) {
+        if (formData.password.length >= 8 && formData.password.length <= 15) {
             // Password is valid
             if (formData.password === formData.confirm_password) {
                 // Passwords match
                 // Do something with the form data, e.g., send it to the server
                 // some other code 
-                setIsOTPpopup(true);
+
+                // setIsOTPpopup(true);   //  for the use of otp popup
+                // setIsOTPpopup(false);
+
+
+                toast.success('Password matched! Proceeding...');
                 // alert('An OTP has been sent to you mobile number')
             } else {
                 toast.error('Passwords do not match.');
@@ -175,13 +180,13 @@ function Signup() {
 
         } else {
             // Password is invalid
-            toast.error('Password must be between 8 and 15 characters long.');
+            toast.error('Password must be 8-15 characters long.');
         }
 
     }
     return (
         <>  {
-                // If otp popup is true then it will show popup.. here 
+            // If otp popup is true then it will show popup.. here 
             isOTPpopup && <div className='min-h-[60vh] absolute top-0 left-0 right-0 z-50 flex justify-center items-end '>
                 <OTP_generate_registration />
             </div>
