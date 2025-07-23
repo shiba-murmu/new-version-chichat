@@ -41,7 +41,7 @@ function ImageSlider({ images }) {
     )
 }
 
-function OTP_generate_registration() {
+function OTP_generate_registration({ callingFunctionFromChild }) {
     return (
         <>
             <div className='bg-[#7257ff] text-sm p-5 w-70 gap-3 flex flex-col items-center  rounded-2xl text-white text-center py-10'>
@@ -59,7 +59,7 @@ function OTP_generate_registration() {
                         <button className='bg-[#ffffff] text-sm w-[50%] text-[#7257ff] p-1 rounded-md'>
                             Verify
                         </button>
-                        <button className='bg-[#ffffff] text-sm w-[50%] text-[#7257ff] p-1 rounded-md'>
+                        <button onClick={callingFunctionFromChild} className='bg-[#ffffff] text-sm w-[50%] text-[#7257ff] p-1 rounded-md'>
                             Cancel
                         </button>
                     </div>
@@ -103,6 +103,12 @@ function Signup() {
         confirm_password: '',
     })
 
+    const closing_popup = () => {
+        // this function is executing from the child component..
+        // <OTP_generate_registration callingFunctionFromChild={closing_popup} />
+        // just to set the isOTPpopup to false;
+        setIsOTPpopup(false);
+    }
     // for email validations.
     useEffect(() => {
         if (formData.email == '') {
@@ -168,8 +174,7 @@ function Signup() {
                 // Do something with the form data, e.g., send it to the server
                 // some other code 
 
-                // setIsOTPpopup(true);   //  for the use of otp popup
-                // setIsOTPpopup(false);
+                setIsOTPpopup(true);   //  for the use of otp popup
 
 
                 toast.success('Password matched! Proceeding...');
@@ -188,7 +193,7 @@ function Signup() {
         <>  {
             // If otp popup is true then it will show popup.. here 
             isOTPpopup && <div className='min-h-[60vh] absolute top-0 left-0 right-0 z-50 flex justify-center items-end '>
-                <OTP_generate_registration />
+                <OTP_generate_registration callingFunctionFromChild={closing_popup} />
             </div>
         }
             <div className='min-h-screen flex flex-col md:flex-row  items-center justify-start'>
