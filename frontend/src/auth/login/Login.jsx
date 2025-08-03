@@ -86,10 +86,9 @@ function Login() {
                     }
                 }
             )
-            if (response.status === 201) {
+            if (response.status === 200) {
                 toast.success(response.data.message);
-                toast.warn('Successfully signing in to your account.')
-                navigate('/account');
+                navigate('/profile');
             }
         } catch (error) {
             toast.error('Login failed !')
