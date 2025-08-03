@@ -8,6 +8,7 @@ from .serializers import RegisterSerializer , LoginSerializer
 
 @api_view(['POST'])
 def login(request):
+    # login function working now.
     serializer = LoginSerializer(data=request.data)
     if serializer.is_valid():
         return Response(
