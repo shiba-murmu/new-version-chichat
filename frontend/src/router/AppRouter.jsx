@@ -14,7 +14,7 @@ import Footer from '../components/Footer/Footer'
 import Home from '../pages/Home/Home'
 import Followers_Profile from '../features/Followers/Followers_profile/Followers_Profile'
 import Inbox_message from '../features/inbox/Inbox_message'
-
+import ProtectedRoute from '../utils/ProtectedRoute'
 function AppRouter() {
     const location = useLocation()
     // list of pages where footer not visible
@@ -31,14 +31,14 @@ function AppRouter() {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/home" element={<ProtectedRoute><Home /> </ProtectedRoute>} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/chats" element={<ChatsList />} />
-                <Route path="/notifications" element={<Notification />} />
-                <Route path="/search" element={<ProfileSearching />} />
-                <Route path="/user/:id" element={<Followers_Profile />} />
-                <Route path="/inbox/:id" element={<Inbox_message />} />
+                <Route path="/profile" element={<ProtectedRoute><Profile /> </ProtectedRoute>} />
+                <Route path="/chats" element={<ProtectedRoute><ChatsList /> </ProtectedRoute>} />
+                <Route path="/notifications" element={<ProtectedRoute><Notification /> </ProtectedRoute>} />
+                <Route path="/search" element={<ProtectedRoute><ProfileSearching /> </ProtectedRoute>} />
+                <Route path="/user/:id" element={<ProtectedRoute><Followers_Profile /> </ProtectedRoute>} />
+                <Route path="/inbox/:id" element={<ProtectedRoute><Inbox_message /> </ProtectedRoute>} />
             </Routes>
         </>
     )

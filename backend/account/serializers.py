@@ -2,30 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import authenticate
-
-# For login serializer 
-class LoginSerializer(serializers.Serializer):
-    email_and_username = serializers.CharField()
-    password = serializers.CharField()
-
-    def validate(self, attrs):
-        identifier = attrs.get('email_and_username')
-        password = attrs.get('password')
-        # Try to get user using username or email
-        try :
-            user = User.objects.get(username=identifier)
-        except User.DoesNotExist:
-            try :
-                user = User.objects.get(email=identifier)
-            except User.DoesNotExist:
-                raise serializers.ValidationError("User not found")
-        #  Authenticate using username ( Django doesn't authenticate using email by default )
-
-        user = authenticate(username=user.username, password=password)
-        if not user:
-            raise serializers.ValidationError('Invalid username or password')
-        attrs['user'] = user
-        return attrs
+# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 

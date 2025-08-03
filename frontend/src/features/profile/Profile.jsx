@@ -2,7 +2,7 @@ import React from 'react'
 import './profile.css'
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-
+import LogoutButton from '../../components/Logout/LogoutButton'
 
 
 function Sidebar({ onClose }) {
@@ -36,9 +36,8 @@ function Sidebar({ onClose }) {
                         <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Home</li>
                         <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Profile</li>
                         <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Settings</li>
-                        <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Logout</li>
+                        <LogoutButton />
                     </ul>
-
                 </div>
             </div>
         </>

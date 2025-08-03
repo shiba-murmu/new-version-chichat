@@ -2,8 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './landingStyle.css'
 import Image from '../../assets/images/conversation.gif'
-
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 function ForSmallScreen() {
+    
+
     return (
         <>
             <div className='rowdies-bold text-[#7257ff] text-6xl'>
@@ -65,6 +68,16 @@ function ForLargeScreen() {
 }
 
 function LandingPage() {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        // this will redirect to the home page if the user is already logged in
+        const token = localStorage.getItem('access')
+        if (token) {
+            navigate('/home')
+        }
+    }, []);
+
     return (
         <>
             <div className='min-h-screen flex flex-col md:flex-row items-center justify-start'>
