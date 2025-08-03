@@ -19,8 +19,6 @@ from django.contrib import admin
 from django.urls import path, include
 from . views import index
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index), # this url is for to check the server is running successfully or not

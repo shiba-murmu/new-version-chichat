@@ -1,0 +1,31 @@
+# # Python
+# __pycache__/
+# *.py[cod]
+# *.sqlite3
+
+# # Virtual environments
+# venv/
+# env/
+# ENV/
+
+# # Django stuff
+# *.log
+# *.pot
+# *.pyc
+
+# # Secret files
+# .env
+# db.sqlite3
+
+# # IDEs and editors
+# .vscode/
+# .idea/
+# *.swp
+
+# # OS files
+# .DS_Store
+# Thumbs.db
+
+
+# for ingnore the variables 
+.env

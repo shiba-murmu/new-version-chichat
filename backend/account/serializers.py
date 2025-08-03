@@ -30,12 +30,25 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('first_name', 'last_name', 'username', 'email', 'password', 'confirm_password')   
 
+    def validate_username(self, value) :
+        """Check if username already exits"""
+        print('i am validating username : ')
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError('Username already taken')
+        return value
+    def validate_email(self, value):
+        print('I am validating from the mail functions : ')
+        """Check is email already exits (not enforced by default in Django)."""
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email is already registered.")
+        return value 
+    
     def validate(self, attrs):
         # This function is used to validate the input data. It checks if the password
         # and confirm_password fields are the same. If they are not, it raises a
         # ValidationError.
         if attrs['password'] != attrs['confirm_password']:
-            raise serializers.ValidationError({"password": "Password fields didn't match."})
+            raise serializers.ValidationError({"confirm_password": "Password fields didn't match."})
 
         return attrs
     def create(self, validated_data):

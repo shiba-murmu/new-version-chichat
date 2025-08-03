@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import './signup.css';
 import validator from 'validator';
 import { toast } from 'react-toastify';
-
-
+// import { axios } from 'axios';
+import axios from 'axios';
 
 const images = [
     'https://images.pexels.com/photos/3184435/pexels-photo-3184435.jpeg',
@@ -45,22 +45,34 @@ function ImageSlider({ images }) {
 function OTP_generate_registration({ callingFunctionFromChild }) {
     return (
         <>
-            <div className='bg-[#7257ff] text-sm p-5 w-70 gap-3 flex flex-col items-center  rounded-2xl text-white text-center py-10'>
+            <div className='bg-[#7257ff] text-sm p-5 w-90 gap-5 flex flex-col items-center  rounded-2xl text-white border text-center py-10'>
                 <div>
-                    <span className='text-lg font-bold'>OTP sent successfully</span>
+                    <span className='text-lg font-bold text-yellow-300'>OTP sent successfully !!</span>
                 </div>
                 <div>
-                    <p>Verify your email address. Please check your Gmail account to verify your account.</p>
+                    <span>
+                        An Otp has been sent your email address. 
+                    </span>
+                    <br />
+                    <span>
+                        Please verify your email address.
+                    </span>
                 </div>
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-col gap-5'>
                     <div>
-                        <input type="number" placeholder='Enter otp' className='border  border-[#ffffff] focus:outline-[#a9a9a9] p-2 rounded-md' />
+                        <input
+                            type="number"
+                            placeholder="Enter otp"
+                            className="border w-70  border-[#ffffff] focus:outline-[#ffffff] p-3 rounded-md
+             [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        />
+
                     </div>
-                    <div className='flex gap-3'>
-                        <button className='bg-[#ffffff] text-sm w-[50%] text-[#7257ff] p-1 rounded-md'>
+                    <div className='flex gap-5'>
+                        <button className='bg-[#ffffff] text-md w-[50%] text-[#7257ff] p-2 rounded-md focus:bg-[] hover:bg-gray-300 hover:cursor-pointer'>
                             Verify
                         </button>
-                        <button onClick={callingFunctionFromChild} className='bg-[#ffffff] text-sm w-[50%] text-[#7257ff] p-1 rounded-md'>
+                        <button onClick={callingFunctionFromChild} className='bg-white w-[50%] text-[#7257ff] hover:bg-neutral-300 hover:cursor-pointer p-2 rounded-md'>
                             Cancel
                         </button>
                     </div>
@@ -72,6 +84,7 @@ function OTP_generate_registration({ callingFunctionFromChild }) {
 
 
 function Signup() {
+    const navigate = useNavigate()
     const [isEyeOpened, setIsEyeOpened] = useState(false); // for toggle eye
     const [isEyeOpenedConfirmPassword, setIsEyeOpenedConfirmPassword] = useState(false);
 
@@ -84,9 +97,12 @@ function Signup() {
     const [usernameError, setUsernameError] = useState('');
 
     // /////////// OTP popup validatior ///////////
-    const [isOTPpopup, setIsOTPpopup] = useState(false);
+    const [isOTPpopup, setIsOTPpopup] = useState(true);
 
-    const API_URL = import.meta.env.VITE_API_URL; 
+    // ///////////////////////////////////////////
+    const [isSubmit , setIsSubmit] = useState(false);
+
+    const API_URL = import.meta.env.VITE_API_URL;
 
     const toggleEyeConfirmPassword = () => {
         // for password confirm password ....
@@ -96,7 +112,7 @@ function Signup() {
         // for password
         setIsEyeOpened(!isEyeOpened);
     }
-
+    // setIsOTPpopup(true)
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
@@ -110,6 +126,7 @@ function Signup() {
         // this function is executing from the child component..
         // <OTP_generate_registration callingFunctionFromChild={closing_popup} />
         // just to set the isOTPpopup to false;
+
         setIsOTPpopup(false);
     }
     // for email validations.
@@ -167,8 +184,9 @@ function Signup() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('sending data : ', formData);
 
         if (formData.password.length >= 8 && formData.password.length <= 15) {
             // Password is valid
@@ -176,12 +194,27 @@ function Signup() {
                 // Passwords match
                 // Do something with the form data, e.g., send it to the server
                 // some other code 
+                setIsSubmit(true);
+                try {
+                    const response = await axios.post(`${API_URL}api/register/`, formData, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    if (response.status === 201) {
+                        toast.success(response.data.message);
+                        toast.warn('Now you can Sign In to your account !')
+                        navigate('/login')
+                    }
+                } catch (error) {
+                    setIsSubmit(false);
+                    const backendErrors = error.response.data.errors
+                    for (const key in backendErrors) {
+                        const errorText = backendErrors[key][0]
+                        toast.error(errorText)
+                    }
 
-                setIsOTPpopup(true);   //  for the use of otp popup
-
-
-                toast.success('Password matched! Proceeding...');
-                // alert('An OTP has been sent to you mobile number')
+                }
             } else {
                 toast.error('Passwords do not match.');
             }
@@ -288,7 +321,11 @@ function Signup() {
                             {/* <input type="password" placeholder='Confirm password' className='border  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' /> */}
 
 
-                            <button type='submit' className='bg-[#7257ff] text-white hover:cursor-pointer text-sm md:text-md rounded p-2.5'>Sign up</button>
+                            <button type='submit' disabled={isSubmit} className='bg-[#7257ff] text-white hover:cursor-pointer text-sm md:text-md rounded p-2.5'>
+                                {
+                                    isSubmit ? 'Please wait...' : 'Sign up'
+                                }
+                            </button>
                             <Link to={'/login'} className='text-center'>
                                 <p className='text-sm md:text-md'>Already have an account? <span className='text-[#7257ff]'>Log in</span></p>
                             </Link>
