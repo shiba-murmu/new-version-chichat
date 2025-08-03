@@ -45,13 +45,13 @@ function ImageSlider({ images }) {
 function OTP_generate_registration({ callingFunctionFromChild }) {
     return (
         <>
-            <div className='bg-[#7257ff] text-sm p-5 w-90 gap-5 flex flex-col items-center  rounded-2xl text-white border text-center py-10'>
+            <div className='bg-[#7254ff] text-sm p-5 w-90 gap-5 flex flex-col items-center  rounded-2xl text-white border text-center py-10'>
                 <div>
-                    <span className='text-lg font-bold text-yellow-300'>OTP sent successfully !!</span>
+                    <span className='text-xl font-bold text-yellow-300'>OTP sent successfully !!</span>
                 </div>
                 <div>
                     <span>
-                        An Otp has been sent your email address. 
+                        An Otp has been sent your email address.
                     </span>
                     <br />
                     <span>
@@ -100,7 +100,7 @@ function Signup() {
     const [isOTPpopup, setIsOTPpopup] = useState(true);
 
     // ///////////////////////////////////////////
-    const [isSubmit , setIsSubmit] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const API_URL = import.meta.env.VITE_API_URL;
 
