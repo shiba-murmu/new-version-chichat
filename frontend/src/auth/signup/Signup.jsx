@@ -186,7 +186,7 @@ function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('sending data : ', formData);
+        // console.log('sending data : ', formData);
 
         if (formData.password.length >= 8 && formData.password.length <= 15) {
             // Password is valid
