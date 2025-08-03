@@ -318,9 +318,6 @@ function Signup() {
                                     }
                                 </div>
                             </div>
-                            {/* <input type="password" placeholder='Confirm password' className='border  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' /> */}
-
-
                             <button type='submit' disabled={isSubmit} className='bg-[#7257ff] text-white hover:cursor-pointer text-sm md:text-md rounded p-2.5'>
                                 {
                                     isSubmit ? 'Please wait...' : 'Sign up'
