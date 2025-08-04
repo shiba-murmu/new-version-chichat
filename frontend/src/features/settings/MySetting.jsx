@@ -1,16 +1,16 @@
 import React, { Profiler } from 'react'
 import { useState } from 'react';
 function MySetting() {
-    const [imageUrl , setImageUrl] = useState(
+    const [imageUrl, setImageUrl] = useState(
         {
-            profile_image : ''
+            profile_image: ''
         }
     )
 
     const handleChange = (e) => {
         setImageUrl({
-            ...imageUrl, 
-            [e.target.name] : e.target.value
+            ...imageUrl,
+            [e.target.name]: e.target.value
         })
     }
     return (
@@ -34,6 +34,15 @@ function MySetting() {
                 </div>
                 <p className='text-xs text-blue-600'>{imageUrl.profile_image}</p>
                 <button type='submit' className='text-sm bg-[#7257ff] text-white hover:cursor-pointer p-2 rounded-md'>Change profile picture</button>
+                <div class="mb-5">
+                    <label class="block mb-2 text-base font-medium text-gray-600">Message</label>
+                    <textarea
+                        class="w-full p-4 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 transition duration-200 resize-none"
+                        rows="6"
+                        placeholder="Write your message here..."
+                    ></textarea>
+                    <p class="mt-1 text-xs text-gray-500">Max 500 characters</p>
+                </div>
             </section>
         </div>
     )

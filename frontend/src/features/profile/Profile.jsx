@@ -92,14 +92,19 @@ function Profile() {
                     </div>
                     <div className='text-sm md:text-md text-center'>
                         {/* profile details container */}
-                        <section>
+                        <section className='flex flex-col items-center'>
                             <h1 className='text-2xl md:text-4xl font-bold text-center'>
                                 {data ? data.first_name + ' ' + data.last_name : 'Loading...'}
                             </h1>
                             <p className='text-center text-xs md:text-sm text-gray-700'>@
                                 {data ? data.username : 'Loading...'}
                             </p>
-                            <p className='text-center'>UI/UX Designer</p>
+                            <p className='text-center flex bg-neutral-400 rounded-md  justify-center text-xs md:text-sm w-[15rem] text-gray-700 md:w-[30%] md:max-h-[5rem] flex-wrap'>
+                                alsdf aksdfn asdkf asdfkas falkdf asdf amsd famsdf asd fasf
+                                lkasdflj lasdlf
+                                asdfasflkamsdf
+                                alksdf aksdnf aksdf 
+                            </p>
                         </section>
                         <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
                             <section className='flex flex-col justify-center'>
