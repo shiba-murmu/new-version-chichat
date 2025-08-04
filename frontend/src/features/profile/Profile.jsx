@@ -3,7 +3,7 @@ import './profile.css'
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import LogoutButton from '../../components/Logout/LogoutButton'
-
+import api from '../../api/axiosInstance'
 
 function Sidebar({ onClose }) {
     const SidebarRef = useRef();
@@ -47,9 +47,21 @@ function Sidebar({ onClose }) {
 
 function Profile() {
     const [isOpen, setIsOpen] = useState(false);
+
+    // to read user data.
+    const [data, setData] = useState(null);
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
+    useEffect(() => {
+        // here it is fetching the data of the user.
+        // with the use of axiosInstance.js
+        api.get('api/user_info/')
+        .then((res) => setData(res.data))
+        .catch((err) => console.log(err))
+    }, [])
+
     return (
         <>
             <div className='min-h-screen w-screen'>
@@ -75,8 +87,12 @@ function Profile() {
                     <div className='text-sm md:text-md text-center'>
                         {/* profile details container */}
                         <section>
-                            <h1 className='text-2xl md:text-4xl font-bold text-center'>John Doe</h1>
-                            <p className='text-center text-xs md:text-sm text-gray-700'>@johndoe</p>
+                            <h1 className='text-2xl md:text-4xl font-bold text-center'>
+                                {data ? data.first_name + ' ' + data.last_name : 'Loading...'}
+                            </h1>
+                            <p className='text-center text-xs md:text-sm text-gray-700'>@
+                                {data ? data.username : 'Loading...'}
+                            </p>
                             <p className='text-center'>UI/UX Designer</p>
                         </section>
                         <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
