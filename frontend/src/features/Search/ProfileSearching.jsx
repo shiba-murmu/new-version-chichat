@@ -27,10 +27,10 @@ function ProfileNavbar() {
 }
 function ProfileSearching() {
     const [isUiShowing, setIsUiShowing] = useState('account');
-
+    
 
     const Account_Card_UI = () => {
-        
+
         return (
             <>
                 <div className='flex justify-start items-center px-2 py-2 border-b border-gray-200 bg-neutral-100'>
@@ -70,13 +70,13 @@ function ProfileSearching() {
             <ProfileNavbar />
             <div>
                 <section className='flex justify-around py-2 border-b border-gray-200'>
-                    <button onClick={() => setIsUiShowing('account')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600'>
+                    <button onClick={() => setIsUiShowing('account')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
                         account
                     </button>
-                    <button onClick={() => setIsUiShowing('posts')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600'>
+                    <button onClick={() => setIsUiShowing('posts')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
                         posts 
                     </button>
-                    <button onClick={() => setIsUiShowing('photos')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600'>
+                    <button onClick={() => setIsUiShowing('photos')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
                         photos 
                     </button>
                 </section>
