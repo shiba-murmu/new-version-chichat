@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework', # rest framework
     'account', # account app
     'rest_framework_simplejwt', # jwt authorizations
+    'rest_framework_simplejwt.token_blacklist',  # Required for blacklisting
 ]
 
 # For jwt authorizations
@@ -56,6 +57,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
+    # set time for the token expiry
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
