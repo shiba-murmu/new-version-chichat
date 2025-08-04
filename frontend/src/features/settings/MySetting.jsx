@@ -1,9 +1,42 @@
-import React from 'react'
-
+import React, { Profiler } from 'react'
+import { useState } from 'react';
 function MySetting() {
-  return (
-    <div>MySetting</div>
-  )
+    const [imageUrl , setImageUrl] = useState(
+        {
+            profile_image : ''
+        }
+    )
+
+    const handleChange = (e) => {
+        setImageUrl({
+            ...imageUrl, 
+            [e.target.name] : e.target.value
+        })
+    }
+    return (
+        <div>
+            <section className="flex flex-col gap-3 p-4 bg-white shadow-md rounded-xl w-full max-w-md mx-auto">
+                <span className="text-lg font-semibold text-gray-700">
+                    Change Profile Picture
+                </span>
+
+                <div className="relative border border-dashed border-gray-300 rounded-lg p-4 text-center bg-gray-50 hover:border-blue-400 transition duration-200">
+                    <input
+                        type="file"
+                        className="absolute inset-0 opacity-0 cursor-pointer"
+                        accept="image/*"
+                        name='profile_image'
+                        onChange={handleChange}
+                        value={imageUrl.profile_image}
+                    />
+                    <p className="text-sm text-gray-500">Click to upload or drag and drop</p>
+                    <p className="text-xs text-gray-400 mt-1">PNG, JPG, JPEG</p>
+                </div>
+                <p className='text-xs text-blue-600'>{imageUrl.profile_image}</p>
+                <button type='submit' className='text-sm bg-[#7257ff] text-white hover:cursor-pointer p-2 rounded-md'>Change profile picture</button>
+            </section>
+        </div>
+    )
 }
 
 export default MySetting;
