@@ -35,7 +35,10 @@ function Sidebar({ onClose }) {
                     <ul className="space-y-2">
                         <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Home</li>
                         <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Profile</li>
-                        <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Settings</li>
+                        <Link to={'/setting'}>
+
+                            <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Settings</li>
+                        </Link>
                         <LogoutButton />
                     </ul>
                 </div>
@@ -58,8 +61,8 @@ function Profile() {
         // here it is fetching the data of the user.
         // with the use of axiosInstance.js
         api.get('api/user_info/')
-        .then((res) => setData(res.data))
-        .catch((err) => console.log(err))
+            .then((res) => setData(res.data))
+            .catch((err) => console.log(err))
     }, [])
 
     return (

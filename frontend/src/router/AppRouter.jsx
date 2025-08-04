@@ -12,6 +12,7 @@ import Notification from '../features/Notifications/Notification'
 import ProfileSearching from '../features/Search/ProfileSearching'
 import Footer from '../components/Footer/Footer'
 import Home from '../pages/Home/Home'
+import MySetting from '../features/settings/MySetting'
 import Followers_Profile from '../features/Followers/Followers_profile/Followers_Profile'
 import Inbox_message from '../features/inbox/Inbox_message'
 import ProtectedRoute from '../utils/ProtectedRoute'
@@ -39,6 +40,7 @@ function AppRouter() {
                 <Route path="/search" element={<ProtectedRoute><ProfileSearching /> </ProtectedRoute>} />
                 <Route path="/user/:id" element={<ProtectedRoute><Followers_Profile /> </ProtectedRoute>} />
                 <Route path="/inbox/:id" element={<ProtectedRoute><Inbox_message /> </ProtectedRoute>} />
+                <Route path='/setting' element={<ProtectedRoute><MySetting /> </ProtectedRoute>} />
             </Routes>
         </>
     )
