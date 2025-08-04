@@ -81,7 +81,7 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Sending data : ', formData)
+        // console.log('Sending data : ', formData) // printed for details.
 
         setIsSubmit(true);
 
@@ -97,7 +97,7 @@ function Login() {
             if (response.status === 200) {
                 const { access , refresh } = response.data;
                 // storing token 
-                console.log(response.data);
+                // console.log(response.data);
                 localStorage.setItem('access' , access);
                 localStorage.setItem('refresh' , refresh);
                 toast.success('Login successful !')
@@ -105,7 +105,7 @@ function Login() {
             }
         } catch (error) {
             toast.error('Login failed !'  , error.response.message)
-            console.log(error)
+            // console.log(error) // to see the error's
         } finally {
             setIsSubmit(false);
         }
