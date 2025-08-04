@@ -250,7 +250,7 @@ function Signup() {
                         <span className='text-sm md:text-md text-center'>Welcome! Let’s get you set up. <br />It only takes a minute to get started.</span>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <form action="" onSubmit={handleSubmit} className='flex flex-col gap-4 px-10 mb-3'>
+                        <form action="" onSubmit={handleSubmit} id='signup-form' className='flex flex-col gap-4 px-10 mb-3'>
                             <input type="text" name='first_name'
                                 onChange={handleChange}
                                 value={formData.first_name}
@@ -266,9 +266,9 @@ function Signup() {
                                     className='border required  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' required />
                                 {/* Here username validations will be done. Where username is already exist or not */}
                                 {
-                                    isUsernameValid ? <label htmlFor="" className='text-xs text-[#7257ff] flex gap-1 items-center'>{usernameError}
-                                    </label> : <label htmlFor="" className='text-xs text-[#ff0000] flex gap-1 items-center'>{usernameError}
-                                    </label>
+                                    isUsernameValid ? <div className='text-xs text-[#7257ff] flex gap-1 items-center'>{usernameError}
+                                    </div> : <div htmlFor="" className='text-xs text-[#ff0000] flex gap-1 items-center'>{usernameError}
+                                    </div>
                                 }
                             </div>
                             <div className='flex flex-col gap-0.5'>
@@ -278,9 +278,9 @@ function Signup() {
                                     placeholder='Email address'
                                     className='border  md:w-80  text-sm md:text-md border-[#7257ff] rounded p-2.5 focus:outline-[#7257ff]' required />
                                 {
-                                    isEmailValid ? <label htmlFor="" className='text-xs text-[#7257ff] flex gap-1 items-center'>{emailError}
-                                    </label> : <label htmlFor="" className='text-xs text-red-500 flex gap-1 items-center'>{emailError}
-                                    </label>
+                                    isEmailValid ? <div htmlFor="" className='text-xs text-[#7257ff] flex gap-1 items-center'>{emailError}
+                                    </div> : <div htmlFor="" className='text-xs text-red-500 flex gap-1 items-center'>{emailError}
+                                    </div>
                                 }
 
                             </div>
