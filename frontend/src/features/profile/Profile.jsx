@@ -33,10 +33,13 @@ function Sidebar({ onClose }) {
                         </button>
                     </div>
                     <ul className="space-y-2">
-                        <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Home</li>
-                        <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Profile</li>
+                        <Link to={'/home'}>
+                            <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Home</li>
+                        </Link>
+                        <Link to={'/profile'}>
+                            <li className="hover:text-blue-500 hove:cursor-pointer pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Profile</li>
+                        </Link>
                         <Link to={'/setting'}>
-
                             <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Settings</li>
                         </Link>
                         <LogoutButton />
