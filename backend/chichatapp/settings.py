@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'account', # account app
     'rest_framework_simplejwt', # jwt authorizations
     'rest_framework_simplejwt.token_blacklist',  # Required for blacklisting
+    'followers', # followers
+    'following', # following
 ]
 
 # For jwt authorizations
