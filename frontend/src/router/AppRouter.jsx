@@ -16,6 +16,9 @@ import MySetting from '../features/settings/MySetting'
 import Followers_Profile from '../features/Followers/Followers_profile/Followers_Profile'
 import Inbox_message from '../features/inbox/Inbox_message'
 import ProtectedRoute from '../utils/ProtectedRoute'
+import FollowerList from '../features/Followers/FollowerList'
+import FollowingList from '../features/Following/FollowingList'
+import Posts from '../features/posts/Posts'
 function AppRouter() {
     const location = useLocation()
     // list of pages where footer not visible
@@ -39,8 +42,12 @@ function AppRouter() {
                 <Route path="/notifications" element={<ProtectedRoute><Notification /> </ProtectedRoute>} />
                 <Route path="/search" element={<ProtectedRoute><ProfileSearching /> </ProtectedRoute>} />
                 <Route path="/user/:user_id/profile" element={<ProtectedRoute><Followers_Profile /> </ProtectedRoute>} />
+                <Route path="/my-followers" element={<ProtectedRoute><FollowerList /> </ProtectedRoute>} />
+                <Route path="/my-following" element={<ProtectedRoute><FollowingList /> </ProtectedRoute>} />
+                <Route path="/posts" element={<ProtectedRoute><Posts /> </ProtectedRoute>} />
                 <Route path="/inbox/:id" element={<ProtectedRoute><Inbox_message /> </ProtectedRoute>} />
                 <Route path='/setting' element={<ProtectedRoute><MySetting /> </ProtectedRoute>} />
+
             </Routes>
         </>
     )

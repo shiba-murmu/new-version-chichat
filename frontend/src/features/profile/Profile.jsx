@@ -107,19 +107,26 @@ function Profile() {
                             </p> */}
                         </section>
                         <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
-                            <section className='flex flex-col justify-center'>
-                                <section className=''>299</section>
-                                <section>Followers</section>
-                            </section>
-                            <section className='flex flex-col justify-center'>
-                                <section>400</section>
-                                <section>Following</section>
-                            </section>
+                            <Link to={'/my-followers'} className='hover:cursor-pointer'>
+
+                                <section className='flex flex-col justify-center'>
+                                    <section className=''>299</section>
+                                    <section>Followers</section>
+                                </section>
+                            </Link>
+                            <Link to={'/my-following'} className='hover:cursor-pointer'>
+                                <section className='flex flex-col justify-center'>
+                                    <section>400</section>
+                                    <section>Following</section>
+                                </section>
+                            </Link>
                         </section>
-                        <section>
-                            <section>30</section>
-                            <section>Posts</section>
-                        </section>
+                        <Link to={'/posts'} className='hover:cursor-pointer'>
+                            <section>
+                                <section>30</section>
+                                <section>Posts</section>
+                            </section>
+                        </Link>
                     </div>
                 </div>
 
