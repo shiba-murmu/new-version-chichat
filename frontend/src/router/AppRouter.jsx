@@ -38,7 +38,7 @@ function AppRouter() {
                 <Route path="/chats" element={<ProtectedRoute><ChatsList /> </ProtectedRoute>} />
                 <Route path="/notifications" element={<ProtectedRoute><Notification /> </ProtectedRoute>} />
                 <Route path="/search" element={<ProtectedRoute><ProfileSearching /> </ProtectedRoute>} />
-                <Route path="/user/:id" element={<ProtectedRoute><Followers_Profile /> </ProtectedRoute>} />
+                <Route path="/user/:user_id/profile" element={<ProtectedRoute><Followers_Profile /> </ProtectedRoute>} />
                 <Route path="/inbox/:id" element={<ProtectedRoute><Inbox_message /> </ProtectedRoute>} />
                 <Route path='/setting' element={<ProtectedRoute><MySetting /> </ProtectedRoute>} />
             </Routes>

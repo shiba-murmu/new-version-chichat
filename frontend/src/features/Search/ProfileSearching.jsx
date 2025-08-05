@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import api from '../../api/axiosInstance'
 
 function BackToHome() {
     return (
@@ -16,7 +17,7 @@ function BackToHome() {
 }
 
 
-function ProfileNavbar() {
+function ProfileSearchBar() {
     return (
         <>
             <div className='bg-gray-50 h-12 border-t-0 border border-b-gray-200 flex items-center'>
@@ -27,19 +28,31 @@ function ProfileNavbar() {
 }
 function ProfileSearching() {
     const [isUiShowing, setIsUiShowing] = useState('account');
-    
 
-    const Account_Card_UI = () => {
+    const [users, setUsers] = useState([])
 
+
+
+    useEffect(() => {
+        api.get('api/all_users/')
+            .then((res) => setUsers(res.data))
+            .catch((err) => console.log(err))
+    }, [])
+
+    const Account_Card_UI = ({ name, username, id }) => {
+        console.log(id)
         return (
             <>
-                <div className='flex justify-start items-center px-2 py-2 border-b border-gray-200 bg-neutral-100'>
-                    <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className='w-14 h-14 rounded-full md:h-[4rem] md:w-[4rem] object-center' alt="" />
-                    <div className='flex flex-col ml-2'>
-                        <span className='font-semibold text-sm'>Shiba Murmu</span>
-                        <span className='text-xs text-gray-500'>@shibamurmu</span>
+                <Link to={'/user/' + id + '/profile'}>
+                    <div className='flex justify-start items-center px-2 py-2 border-b border-gray-200 bg-neutral-100'>
+                        <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className='w-14 h-14 rounded-full md:h-[4rem] md:w-[4rem] object-center' alt="" />
+                        <div className='flex flex-col ml-2'>
+                            <span className='font-semibold text-sm'>{name}</span>
+                            <span className='text-xs text-gray-500'>@{username}</span>
+                        </div>
                     </div>
-                </div>
+                    {/* Here i want to render the api id's so that it will be called from the frontend */}
+                </Link>
             </>
         )
     }
@@ -67,17 +80,17 @@ function ProfileSearching() {
         // <div>ProfileSearching</div>
         <>
             <BackToHome />
-            <ProfileNavbar />
+            <ProfileSearchBar />
             <div>
                 <section className='flex justify-around py-2 border-b border-gray-200'>
                     <button onClick={() => setIsUiShowing('account')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
                         account
                     </button>
                     <button onClick={() => setIsUiShowing('posts')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
-                        posts 
+                        posts
                     </button>
                     <button onClick={() => setIsUiShowing('photos')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
-                        photos 
+                        photos
                     </button>
                 </section>
             </div>
@@ -86,14 +99,19 @@ function ProfileSearching() {
                 {
                     isUiShowing === 'account' &&
                     <div className='flex flex-col max-h-[67.5vh] overflow-y-auto'>
+                        {
+                            users.map(user => (
+
+                                <Account_Card_UI key={user.id} id={user.id} name={user.first_name + ' ' + user.last_name} username={user.username} />
+                            ))
+                        }
+                        {/* <Account_Card_UI />
                         <Account_Card_UI />
                         <Account_Card_UI />
                         <Account_Card_UI />
                         <Account_Card_UI />
                         <Account_Card_UI />
-                        <Account_Card_UI />
-                        <Account_Card_UI />
-                        <Account_Card_UI />
+                        <Account_Card_UI /> */}
                     </div>
                 }
                 {
