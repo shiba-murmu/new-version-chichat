@@ -5,7 +5,7 @@ function Posts() {
     return (
         <>
             <div  className='min-h-screen w-screen'>
-                <FollowFollowingPost_navbar navbar_text={'My posts'} />
+                <FollowFollowingPost_navbar navbar_text={'My posts'} item_count={12} />
             </div>
         </>
     )

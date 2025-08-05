@@ -5,7 +5,7 @@ function FollowingList() {
     return (
         <>
             <div className='min-h-screen w-screen'>
-                <FollowFollowingPost_navbar navbar_text={'Following'} />
+                <FollowFollowingPost_navbar navbar_text={'Following'} item_count={12} />
                 <div>
 
                 </div>
