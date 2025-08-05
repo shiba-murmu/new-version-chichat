@@ -40,7 +40,6 @@ function ProfileSearching() {
     }, [])
 
     const Account_Card_UI = ({ name, username, id }) => {
-        console.log(id)
         return (
             <>
                 <Link to={'/user/' + id + '/profile'}>

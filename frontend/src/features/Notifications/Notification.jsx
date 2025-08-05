@@ -52,7 +52,12 @@ function UserNotification() {
                     <span className='font-semibold'>Puja kujur</span> has sent you a follow request.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. omnis optio corporis eligendi quam.
                 </div>
-                <div className='px-3 py-2 flex justify-end items-center'>
+                <div className='px-3 py-2 flex justify-end items-center gap-3'>
+                    <button className='hover:cursor-pointer'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                    </button>
                     {/* This div is for delete the messages from the notification */}
                     <button onClick={toggleMenu} className='hover:cursor-pointer'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1" stroke="currentColor" className="size-6">

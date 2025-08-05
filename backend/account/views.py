@@ -8,6 +8,16 @@ from rest_framework.views import APIView
 
 from .serializers import RegisterSerializer , UserSerializer
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_single_user_information(request, user_id): 
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
+
 class AllUsersView(APIView):
     permission_classes = [IsAuthenticated]
 

@@ -49,7 +49,7 @@ function Followers_Profile() {
     const { user_id } = useParams();
     const [isOpen, setIsOpen] = useState(false);
     const [isFollowing, setIsFollowing] = useState(false);
-    const [user , setUser] = useState([])
+    const [user, setUser] = useState([])
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
@@ -57,11 +57,12 @@ function Followers_Profile() {
         setIsFollowing(!isFollowing);
     }
 
-    useEffect(() => (
+    useEffect(() => {
         api.get('api/user_info/' + user_id + '/')
-        .then((res) => setUser(res.data))
-        .catch((err) => console.log(err))
-    ), [])
+            .then((res) => setUser(res.data))
+            .catch((err) => console.log(err))
+    }, [user_id])
+
 
     return (
         <>
@@ -88,9 +89,17 @@ function Followers_Profile() {
                     <div className='text-sm md:text-md text-center '>
                         {/* profile details container */}
                         <section>
-                            <h1 className='text-2xl md:text-4xl font-bold text-center'>John e</h1>
-                            <p className='text-center text-xs md:text-sm text-gray-700'>@johndoe</p>
-                            <p className='text-center'>UI/UX Designer</p>
+
+                            <h1 className='text-2xl md:text-4xl font-bold text-center'>
+                                {
+                                    user ? user.first_name + ' ' + user.last_name : 'John Doe'
+                                }</h1>
+                            <p className='text-center text-xs md:text-sm text-gray-700'>@
+                                {
+                                    user ? user.username : 'johndoe'
+                                }
+                            </p>
+                            {/* <p className='text-center'>UI/UX Designer</p> */}
                         </section>
                         {
                             isFollowing ? <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>

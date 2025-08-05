@@ -99,12 +99,12 @@ function Profile() {
                             <p className='text-center text-xs md:text-sm text-gray-700'>@
                                 {data ? data.username : 'Loading...'}
                             </p>
-                            <p className='text-center flex bg-neutral-400 rounded-md  justify-center text-xs md:text-sm w-[15rem] text-gray-700 md:w-[30%] md:max-h-[5rem] flex-wrap'>
+                            {/* <p className='text-center flex bg-neutral-400 rounded-md  justify-center text-xs md:text-sm w-[15rem] text-gray-700 md:w-[30%] md:max-h-[5rem] flex-wrap'>
                                 alsdf aksdfn asdkf asdfkas falkdf asdf amsd famsdf asd fasf
                                 lkasdflj lasdlf
                                 asdfasflkamsdf
                                 alksdf aksdnf aksdf 
-                            </p>
+                            </p> */}
                         </section>
                         <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
                             <section className='flex flex-col justify-center'>
