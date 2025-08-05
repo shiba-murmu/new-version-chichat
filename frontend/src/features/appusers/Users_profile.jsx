@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import api from '../../api/axiosInstance'
+// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function Users_profile_sidebar({ onClose }) {
     const SidebarRef = useRef();
@@ -55,13 +57,23 @@ function Users_profile() {
     };
     const toggleMenuToFollow = () => {
         // setIsFollowing(!isFollowing);
-        console.log('I am clicked to follow');
-        api.post(`api/follow/${user_id}/`)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
-        if (err.data == 404) {
-            setIsFollowing(!isFollowing)
-        }
+        api.post(`api/following/new_user/`, { "user_id": user_id })
+            .then((response) => {
+                // console.log(response) // typeof first
+                if (response.status == 201) {
+                    toast.success(response.data.message);
+                    setIsFollowing(!isFollowing)
+                }
+            })
+            .catch((error) => {
+                const errorData = error?.response?.data;
+                const fallbackMsg =
+                    errorData?.message ||
+                    errorData?.detail ||
+                    Object.values(errorData || {})[0] ||
+                    "Something went wrong";
+                toast.error(fallbackMsg);
+            })
     }
 
     useEffect(() => {
@@ -120,7 +132,7 @@ function Users_profile() {
                                     <section>Following</section>
                                 </section>
                             </section>
-                            // Here one ui posts ui is missing.. this wil be designed as in future..
+                                // Here one ui posts ui is missing.. this wil be designed as in future..
                                 :
                                 <section className='flex justify-center mt-2'>
                                     <button type='button' onClick={toggleMenuToFollow} className='bg-[#7257ff] text-sm  rounded-full text-white font-bold py-2 px-4'>Follow</button>
