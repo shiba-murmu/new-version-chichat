@@ -52,9 +52,14 @@ function Users_profile() {
     const [isOpen, setIsOpen] = useState(false);
     const [isFollowing, setIsFollowing] = useState(false);
     const [user, setUser] = useState([])
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
+    const toggleMenuToUnfollow = () => {
+        setIsFollowing(!isFollowing);
+    }
     const toggleMenuToFollow = () => {
         // setIsFollowing(!isFollowing);
         api.post(`api/following/new_user/`, { "user_id": user_id })
@@ -63,6 +68,7 @@ function Users_profile() {
                 if (response.status == 201) {
                     toast.success(response.data.message);
                     setIsFollowing(!isFollowing)
+                    setIsFollowed(true)
                 }
             })
             .catch((error) => {
@@ -121,17 +127,25 @@ function Users_profile() {
                             {/* <p className='text-center'>UI/UX Designer</p> */}
                         </section>
                         {
-                            isFollowing ? <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
-                                {/* this section is hidden for sometimes/ */}
-                                <section className='flex flex-col justify-center'>
-                                    <section className=''>299</section>
-                                    <section>Followers</section>
-                                </section>
-                                <section className='flex flex-col justify-center'>
-                                    <section>400</section>
-                                    <section>Following</section>
-                                </section>
-                            </section>
+                            isFollowing ?
+                                <>
+
+                                    <section className='flex mt-2 justify-evenly md:justify-center-safe md:gap-40'>
+                                        {/* this section is hidden for sometimes/ */}
+                                        <section className='flex flex-col justify-center'>
+                                            <section className=''>299</section>
+                                            <section>Followers</section>
+                                        </section>
+                                        <section className='flex flex-col justify-center'>
+                                            <section>400</section>
+                                            <section>Following</section>
+                                        </section>
+                                    </section>
+                                    <section onClick={toggleMenuToUnfollow} className='flex justify-center mt-2'>
+                                        {/* There will be add a function to unfollow */}
+                                        <button type='button' className='bg-[#7257ff] text-sm  rounded-full text-white font-bold py-2 px-4'>Unfollow</button>
+                                    </section>
+                                </>
                                 // Here one ui posts ui is missing.. this wil be designed as in future..
                                 :
                                 <section className='flex justify-center mt-2'>
