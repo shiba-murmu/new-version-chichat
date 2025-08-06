@@ -5,15 +5,23 @@ import api from '../../api/axiosInstance'
 import { useEffect, useState } from 'react'
 function FollowingList() {
     const [users, setUsers] = useState([])
+    let [message, setMessage] = useState('')
     // next coding from here..
     // this function is the ID's you are following..
     useEffect(() => {
         api.get('api/following/following_users_list/').then((res) => {
             // data will be response here 
             console.log(res.data)
-            setUsers(res.data)
+            if(Array.isArray(res.data)) {
+                setUsers(res.data)
+            } else {
+                message = res.data.message
+                setUsers([])
+                setMessage(message)
+            }
         }).catch((err) => {
             console.log(err)
+            setUsers([])
         })
     }, [])
     return (
@@ -26,31 +34,35 @@ function FollowingList() {
                 <div>
                     {
                         users.length === 0 ? (
-                            <p>You are not following anyone</p>
+                            <div className='flex justify-center items-center'>
+                                <span className='text-xs text-gray-500'>{message}</span>
+                            </div>
                         ) : (
-                            users.map((user) => (
-                                <div key={user.id} className='flex justify-between items-center px-2 py-2 border-b border-gray-200'>
-                                    <div className='flex justify-start items-center px-2'>
-                                        <Link to={'/user/' + user.id + '/profile'} className='flex justify-start items-center'>
-                                            <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className='w-14 h-14 rounded-full md:h-[4rem] md:w-[4rem] object-center' alt="" />
-                                            <div className='flex flex-col ml-2'>
-                                                <span className='font-semibold text-sm'>
-                                                    {user.first_name} {user.last_name}
-                                                </span>
-                                                <span className='text-xs text-gray-500'>@
-                                                    {user.username}
-                                                </span>
-                                            </div>
-                                        </Link>
+                            users.map((user) => {
+                                return (
+                                    <div key={user.id} className='flex justify-between items-center px-2 py-2 border-b border-gray-200'>
+                                        <div className='flex justify-start items-center px-2'>
+                                            <Link to={'/user/' + user.id + '/profile'} className='flex justify-start items-center'>
+                                                <img src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" className='w-14 h-14 rounded-full md:h-[4rem] md:w-[4rem] object-center' alt="" />
+                                                <div className='flex flex-col ml-2'>
+                                                    <span className='font-semibold text-sm'>
+                                                        {user.first_name} {user.last_name}
+                                                    </span>
+                                                    <span className='text-xs text-gray-500'>@
+                                                        {user.username}
+                                                    </span>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            <section className='flex justify-center hover:cursor-pointer'>
+                                                {/* There will be add a function to unfollow */}
+                                                <button type='button' className='bg-[#7257ff] text-xs hover:cursor-pointer  rounded-full text-white font-normal py-2 px-4'>Unfollow</button>
+                                            </section>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <section className='flex justify-center hover:cursor-pointer'>
-                                            {/* There will be add a function to unfollow */}
-                                            <button type='button' className='bg-[#7257ff] text-xs hover:cursor-pointer  rounded-full text-white font-normal py-2 px-4'>Unfollow</button>
-                                        </section>
-                                    </div>
-                                </div>
-                            ))
+                                )
+                            })
                         )
                     }
                 </div>
