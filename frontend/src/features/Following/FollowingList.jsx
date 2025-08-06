@@ -13,14 +13,15 @@ function FollowingList() {
             // data will be response here 
             console.log(res.data)
             if(Array.isArray(res.data)) {
+                // this will check if the data is an array or not 
                 setUsers(res.data)
             } else {
                 message = res.data.message
+                // catch the data message
                 setUsers([])
                 setMessage(message)
             }
         }).catch((err) => {
-            console.log(err)
             setUsers([])
         })
     }, [])
