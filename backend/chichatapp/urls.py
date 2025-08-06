@@ -31,6 +31,6 @@ urlpatterns = [
     path('', index), # this url is for to check the server is running successfully or not
     path('api/', include('account.urls')),
     path('api/following/', include('follow.urls')), # urls for followers
-    path('token/login/', TokenObtainPairView.as_view(),name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/login/', TokenObtainPairView.as_view(),name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

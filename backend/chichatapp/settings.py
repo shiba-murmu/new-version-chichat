@@ -66,7 +66,6 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # cors
     'django.middleware.security.SecurityMiddleware',

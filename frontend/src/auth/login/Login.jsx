@@ -86,7 +86,7 @@ function Login() {
         setIsSubmit(true);
 
         try {
-            const response = await axios.post(`${API_URL}token/login/`,
+            const response = await axios.post(`${API_URL}api/token/login/`,
                formData
              , {
                 headers : {
