@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import api from '../../api/axiosInstance'
-// import { toast } from 'react-toastify';
 import { toast } from 'react-toastify';
 
 function Users_profile_sidebar({ onClose }) {
@@ -38,7 +37,6 @@ function Users_profile_sidebar({ onClose }) {
                         <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Settings</li>
                         {/* <li className="hover:text-blue-500 pl-4 border-b border-gray-200 rounded-l-2xl text-sm md:text-md py-3 cursor-pointer">Logout</li> */}
                     </ul>
-
                 </div>
             </div>
         </>

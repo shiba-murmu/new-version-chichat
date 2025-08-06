@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../../api/axiosInstance'
+import { NavLink } from 'react-router-dom'
 
 function BackToHome() {
     return (
@@ -82,13 +83,13 @@ function ProfileSearching() {
             <ProfileSearchBar />
             <div>
                 <section className='flex justify-around py-2 border-b border-gray-200'>
-                    <button onClick={() => setIsUiShowing('account')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
+                    <button onClick={() => setIsUiShowing('account')} className={` text-sm rounded-md w-20 border-gray-500 hover:cursor-pointer ${isUiShowing === 'account' ? "bg-[#7257ff] text-white" : "bg-none text-gray-500 border"}`}>
                         account
                     </button>
-                    <button onClick={() => setIsUiShowing('posts')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
+                    <button onClick={() => setIsUiShowing('posts')} className={` text-sm rounded-md w-20 border-gray-500 hover:cursor-pointer ${isUiShowing === 'posts' ? "bg-[#7257ff] text-white" : "bg-none text-gray-500 border"}`}>
                         posts
                     </button>
-                    <button onClick={() => setIsUiShowing('photos')} className='border text-sm rounded-md w-20 border-gray-500 text-gray-600 hover:cursor-pointer'>
+                    <button onClick={() => setIsUiShowing('photos')} className={` text-sm rounded-md w-20 border-gray-500 hover:cursor-pointer ${isUiShowing === 'photos' ? "bg-[#7257ff] text-white" : "bg-none text-gray-500 border"}`}>
                         photos
                     </button>
                 </section>
