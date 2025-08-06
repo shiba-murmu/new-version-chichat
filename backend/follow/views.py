@@ -14,7 +14,7 @@ def check_if_user_is_following(request):
     following_id = request.query_params.get('user_id')
     following = User.objects.get(id=following_id)
     is_following = Follow.objects.filter(follower=follower, following=following).exists()
-    print(is_following)
+    # print(is_following)
     return Response({'is_following': is_following}, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
