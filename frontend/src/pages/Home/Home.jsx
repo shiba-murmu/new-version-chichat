@@ -57,8 +57,6 @@ function Home() {
                     <PostingCard />
                 </div>
             </div>
-
-            
         </>
     )
 }
