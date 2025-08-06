@@ -105,13 +105,6 @@ function ProfileSearching() {
                                 <Account_Card_UI key={user.id} id={user.id} name={user.first_name + ' ' + user.last_name} username={user.username} />
                             ))
                         }
-                        {/* <Account_Card_UI />
-                        <Account_Card_UI />
-                        <Account_Card_UI />
-                        <Account_Card_UI />
-                        <Account_Card_UI />
-                        <Account_Card_UI />
-                        <Account_Card_UI /> */}
                     </div>
                 }
                 {
