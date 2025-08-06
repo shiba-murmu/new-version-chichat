@@ -53,22 +53,19 @@ function Users_profile() {
     const [isFollowing, setIsFollowing] = useState(false);
     const [user, setUser] = useState([])
 
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     const toggleMenuToUnfollow = () => {
-        setIsFollowing(!isFollowing);
-    }
-    const toggleMenuToFollow = () => {
-        // setIsFollowing(!isFollowing);
-        api.post(`api/following/new_user/`, { "user_id": user_id })
+        api.get('api/following/unfollow_user/?user_id=' + user_id + '')
             .then((response) => {
                 // console.log(response) // typeof first
-                if (response.status == 201) {
+                if (response.status == 200) {
                     toast.success(response.data.message);
                     setIsFollowing(!isFollowing)
-                    setIsFollowed(true)
+                    // toast.success('You have unfollowed this user.');
                 }
             })
             .catch((error) => {
@@ -82,9 +79,45 @@ function Users_profile() {
             })
     }
 
+    // useEffect(() => (
+    //     api.get('api/following/check_if_user_is_following/' + user_id + '/')
+    //     .then((res)=> console.log(res))
+    //     .catch((err)=>console.log(err))
+    // ), [user_id])
+
+    const toggleMenuToFollow = () => {
+        // setIsFollowing(!isFollowing);
+        api.post(`api/following/new_user/`, { "user_id": user_id })
+            .then((response) => {
+                // console.log(response) // typeof first
+                if (response.status == 201) {
+                    toast.success(response.data.message);
+                    setIsFollowing(!isFollowing)
+                }
+            })
+            .catch((error) => {
+                const errorData = error?.response?.data;
+                const fallbackMsg =
+                    errorData?.message ||
+                    errorData?.detail ||
+                    Object.values(errorData || {})[0] ||
+                    "Something went wrong";
+                toast.error(fallbackMsg);
+            }, [])
+    }
+
     useEffect(() => {
+        // to fetch the user informations,
         api.get('api/user_info/' + user_id + '/')
-            .then((res) => setUser(res.data))
+            .then((res1) => {
+                setUser(res1.data)
+                return api.get('api/following/check_if_user_is_following/?user_id=' + user_id + '')
+            })
+            .then((res2) => {
+                setIsFollowing(res2.data.is_following)
+                // print(res2.data.is_following)
+                console.log(res2.data.is_following)
+            })
             .catch((err) => console.log(err))
     }, [user_id])
 
@@ -141,15 +174,15 @@ function Users_profile() {
                                             <section>Following</section>
                                         </section>
                                     </section>
-                                    <section onClick={toggleMenuToUnfollow} className='flex justify-center mt-2'>
+                                    <section onClick={toggleMenuToUnfollow} className='flex  justify-center mt-2'>
                                         {/* There will be add a function to unfollow */}
-                                        <button type='button' className='bg-[#7257ff] text-sm  rounded-full text-white font-bold py-2 px-4'>Unfollow</button>
+                                        <button type='button' className='bg-[#7257ff] text-sm hover:cursor-pointer  rounded-full text-white font-bold py-2 px-4'>Unfollow</button>
                                     </section>
                                 </>
                                 // Here one ui posts ui is missing.. this wil be designed as in future..
                                 :
                                 <section className='flex justify-center mt-2'>
-                                    <button type='button' onClick={toggleMenuToFollow} className='bg-[#7257ff] text-sm  rounded-full text-white font-bold py-2 px-4'>Follow</button>
+                                    <button type='button' onClick={toggleMenuToFollow} className='bg-[#7257ff] text-sm  rounded-full hover:cursor-pointer text-white font-bold py-2 px-4'>Follow</button>
                                 </section>
                         }
                     </div>

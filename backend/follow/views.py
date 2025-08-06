@@ -7,6 +7,29 @@ from django.contrib.auth.models import User
 from account.serializers import UserSerializer
 
 # Create your views here.
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def check_if_user_is_following(request):
+    follower = request.user
+    following_id = request.query_params.get('user_id')
+    following = User.objects.get(id=following_id)
+    is_following = Follow.objects.filter(follower=follower, following=following).exists()
+    print(is_following)
+    return Response({'is_following': is_following}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def unfollow_user(request):
+    follower = request.user
+    following_id = request.query_params.get('user_id')
+    following = User.objects.get(id=following_id)
+    follow = Follow.objects.filter(follower=follower, following=following).first()
+    if follow:
+        follow.delete()
+        return Response({'message': f'You have unfollowed {following.username}.'}, status=status.HTTP_200_OK)
+    else:
+        return Response({'message': f'You are not following {following.username}.'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])

@@ -3,11 +3,36 @@ import { Link } from 'react-router-dom'
 import FollowFollowingPost_navbar from '../../components/Navbar/FollowFollowingPost_navbar'
 import api from '../../api/axiosInstance'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 function FollowingList() {
     const [users, setUsers] = useState([])
     let [message, setMessage] = useState('')
+    const user_id = users[0]?.id
     // next coding from here..
     // this function is the ID's you are following..
+
+    const toggleMenuToUnfollow = () => {
+        api.get('api/following/unfollow_user/?user_id=' + user_id + '')
+            .then((response) => {
+                // console.log(response) // typeof first
+                if (response.status == 200) {
+                    toast.success(response.data.message);
+                    // setIsFollowing(!isFollowing)
+                    setUsers([])
+                    setMessage('You are not following any user.')
+                    // toast.success('You have unfollowed this user.');
+                }
+            })
+            .catch((error) => {
+                const errorData = error?.response?.data;
+                const fallbackMsg =
+                    errorData?.message ||
+                    errorData?.detail ||
+                    Object.values(errorData || {})[0] ||
+                    "Something went wrong";
+                toast.error(fallbackMsg);
+            })
+    }
     useEffect(() => {
         api.get('api/following/following_users_list/').then((res) => {
             // data will be response here 
@@ -58,7 +83,7 @@ function FollowingList() {
                                         <div>
                                             <section className='flex justify-center hover:cursor-pointer'>
                                                 {/* There will be add a function to unfollow */}
-                                                <button type='button' className='bg-[#7257ff] text-xs hover:cursor-pointer  rounded-full text-white font-normal py-2 px-4'>Unfollow</button>
+                                                <button type='button'  onClick={toggleMenuToUnfollow}  className='bg-[#7257ff] text-xs hover:cursor-pointer  rounded-full text-white font-normal py-2 px-4'>Unfollow</button>
                                             </section>
                                         </div>
                                     </div>
