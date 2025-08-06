@@ -4,8 +4,24 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import Follow
 from django.contrib.auth.models import User
+from account.serializers import UserSerializer
 
 # Create your views here.
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def following_users_list(request):
+    # This function will be fetch the user's following list.
+    following_users = Follow.objects.filter(follower=request.user).values_list('following_id', flat=True)
+    # this will return the user's following list , simple it checks the user is following some user or not
+    if not following_users:
+        return Response({'message': 'You are not following any user.'}, status=status.HTTP_200_OK)
+    following_user_data = User.objects.filter(id__in=following_users)
+    # this will return the user's data from User model
+    following_users = UserSerializer(following_user_data, many=True).data
+    # this will return the user's data in json format
+    # print(following_users)
+    return Response(following_users, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
