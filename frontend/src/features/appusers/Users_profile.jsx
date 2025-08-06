@@ -93,15 +93,18 @@ function Users_profile() {
                 if (response.status == 201) {
                     toast.success(response.data.message);
                     setIsFollowing(!isFollowing)
+                } else {
+                    toast.error(response.data.message);
                 }
             })
             .catch((error) => {
+                toast.error(error?.response?.data?.message);
                 const errorData = error?.response?.data;
                 const fallbackMsg =
                     errorData?.message ||
                     errorData?.detail ||
                     Object.values(errorData || {})[0] ||
-                    "Something went wrong";
+                    "You cannot follow yourself.";
                 toast.error(fallbackMsg);
             }, [])
     }
@@ -116,7 +119,7 @@ function Users_profile() {
             .then((res2) => {
                 setIsFollowing(res2.data.is_following)
                 // print(res2.data.is_following)
-                console.log(res2.data.is_following)
+                // console.log(res2.data.is_following)
             })
             .catch((err) => console.log(err))
     }, [user_id])
@@ -174,9 +177,9 @@ function Users_profile() {
                                             <section>Following</section>
                                         </section>
                                     </section>
-                                    <section onClick={toggleMenuToUnfollow} className='flex  justify-center mt-2'>
+                                    <section  className='flex  justify-center mt-2'>
                                         {/* There will be add a function to unfollow */}
-                                        <button type='button' className='bg-[#7257ff] text-sm hover:cursor-pointer  rounded-full text-white font-bold py-2 px-4'>Unfollow</button>
+                                        <button type='button' onClick={toggleMenuToUnfollow} className='bg-[#7257ff] text-sm hover:cursor-pointer  rounded-full text-white font-bold py-2 px-4'>Unfollow</button>
                                     </section>
                                 </>
                                 // Here one ui posts ui is missing.. this wil be designed as in future..

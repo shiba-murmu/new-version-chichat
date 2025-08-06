@@ -36,7 +36,7 @@ function FollowingList() {
     useEffect(() => {
         api.get('api/following/following_users_list/').then((res) => {
             // data will be response here 
-            console.log(res.data)
+            // console.log(res.data)
             if(Array.isArray(res.data)) {
                 // this will check if the data is an array or not 
                 setUsers(res.data)
