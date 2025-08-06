@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 function Inbox_message() {
-    console.log("App component is rendering!"); // Log to check if component mounts
+    // console.log("App component is rendering!"); // Log to check if component mounts
 
     // State to hold chat messages
     const [messages, setMessages] = useState([]);
