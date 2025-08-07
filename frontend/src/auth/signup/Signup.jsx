@@ -45,25 +45,19 @@ function ImageSlider({ images }) {
 function OTP_generate_registration({ callingFunctionFromChild }) {
     return (
         <>
-            <div className='bg-[#7254ff] text-sm p-5 w-90 gap-5 flex flex-col items-center  rounded-2xl text-white border text-center py-10'>
-                <div>
-                    <span className='text-xl font-bold text-yellow-300'>OTP sent successfully !!</span>
+            <div className='bg-[#7254ff] text-sm  p-5 w-80 md:w-90 gap-5 flex flex-col items-center  rounded-2xl text-white border text-center py-10 md:py-10'>
+                <div className='flex justify-center items-center gap-2'>
+                    <span className='text-xl font-bold text-yellow-100'>OTP Verification </span> <span className='flex justify-center items-center text-lg'>🔑</span>
                 </div>
-                <div>
-                    <span>
-                        An Otp has been sent your email address.
-                    </span>
-                    <br />
-                    <span>
-                        Please verify your email address.
-                    </span>
+                <div className='text-sm'>
+                    <p>An OTP has been sent to your registered email address</p>
                 </div>
                 <div className='flex flex-col gap-5'>
                     <div>
                         <input
                             type="number"
                             placeholder="Enter otp"
-                            className="border w-70  border-[#ffffff] focus:outline-[#ffffff] p-3 rounded-md
+                            className="border w-60 md:w-70  border-[#ffffff] focus:outline-[#ffffff] p-2 md:p-3 rounded-md
              [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
 
