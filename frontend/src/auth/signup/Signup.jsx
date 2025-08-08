@@ -267,26 +267,7 @@ function Signup() {
                         setIsSubmit(false);
                         toast.error(error.response.data.message);
                     });
-                // try {
-                //     const response = await axios.post(`${API_URL}api/register/`, formData, {
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //         }
-                //     });
-                //     if (response.status === 201) {
-                //         toast.success(response.data.message);
-                //         toast.warn('Now you can Sign In to your account !')
-                //         navigate('/login')
-                //     }
-                // } catch (error) {
-                //     setIsSubmit(false);
-                //     const backendErrors = error.response.data.errors
-                //     for (const key in backendErrors) {
-                //         const errorText = backendErrors[key][0]
-                //         toast.error(errorText)
-                //     }
-
-                // }
+               
             } else {
                 toast.error('Passwords do not match.');
             }
