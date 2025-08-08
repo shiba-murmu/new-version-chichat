@@ -5,9 +5,8 @@ import { motion } from 'framer-motion'
 import './signup.css';
 import validator from 'validator';
 import { toast } from 'react-toastify';
-// import { axios } from 'axios';
 import axios from 'axios';
-
+import api from '../../api/axiosInstance'
 const images = [
     'https://images.pexels.com/photos/3184435/pexels-photo-3184435.jpeg',
     'https://images.pexels.com/photos/1687093/pexels-photo-1687093.jpeg',
@@ -42,7 +41,70 @@ function ImageSlider({ images }) {
     )
 }
 
-function OTP_generate_registration({ callingFunctionFromChild }) {
+function OTP_generate_registration({ callingFunctionFromChild, formData }) {
+    const navigate = useNavigate();
+    const [isSubmit, setIsSubmit] = useState(false);
+    const API_URL = import.meta.env.VITE_API_URL;
+
+
+    const [otpCode, setOtpCode] = useState({
+        otp: '',
+    });
+    const handleChange = (e) => {
+        setOtpCode({
+            ...otpCode,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    async function VerifyOtp(e) {
+        e.preventDefault();
+        setIsSubmit(true);
+        if (otpCode.otp === '') {
+            toast.error('Please enter otp');
+            setIsSubmit(false);
+            return
+        }
+
+        // There is need of code to refactor...
+
+        api.post(`${API_URL}api/verify-otp/`, { email: formData.email, otp: otpCode.otp }).then((response) => {
+            if (response.status === 200) {
+                toast.success(response.data.message);
+                api.post(`${API_URL}api/register/`, formData).then((response) => {
+                    // sending api for registrations.
+                    if (response.status === 201) {
+                        toast.success(response.data.message);
+                        toast.success('Now you can sign in to your account!')
+                        navigate('/login')
+                    }
+                })
+                    .catch((error) => {
+                        setIsSubmit(false);
+                        const backendErrors = error.response.data.errors
+                        for (const key in backendErrors) {
+                            const errorText = backendErrors[key][0]
+                            toast.error(errorText)
+                        }
+                    })
+            }
+        })
+            .catch((error) => {
+                setIsSubmit(false);
+                if (error) {
+                    toast.error(error.response || 'Invalid OTP');
+                } else {
+                    toast.error('Could not connect to the server.');
+                }
+            });
+    }
+    // ?????????????????????????????????????????????
+
+
+
+
+
+
     return (
         <>
             <div className='bg-[#7254ff] text-sm  p-5 w-80 md:w-90 gap-5 flex flex-col items-center  rounded-2xl text-white border text-center py-10 md:py-10'>
@@ -56,15 +118,20 @@ function OTP_generate_registration({ callingFunctionFromChild }) {
                     <div>
                         <input
                             type="number"
+                            name='otp'
                             placeholder="Enter otp"
+                            onChange={handleChange}
+                            value={otpCode.otp}
                             className="border w-60 md:w-70  border-[#ffffff] focus:outline-[#ffffff] p-2 md:p-3 rounded-md
              [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                        />
+                            required />
 
                     </div>
                     <div className='flex gap-5'>
-                        <button className='bg-[#ffffff] text-md w-[50%] text-[#7257ff] p-2 rounded-md focus:bg-[] hover:bg-gray-300 hover:cursor-pointer'>
-                            Verify
+                        <button type='submit' disabled={isSubmit} onClick={VerifyOtp} className='bg-[#ffffff] text-md w-[50%] text-[#7257ff] p-2 rounded-md focus:bg-[] hover:bg-gray-300 hover:cursor-pointer'>
+                            {
+                                isSubmit ? 'Verifying..' : 'Verify'
+                            }
                         </button>
                         <button onClick={callingFunctionFromChild} className='bg-white w-[50%] text-[#7257ff] hover:bg-neutral-300 hover:cursor-pointer p-2 rounded-md'>
                             Cancel
@@ -91,7 +158,7 @@ function Signup() {
     const [usernameError, setUsernameError] = useState('');
 
     // /////////// OTP popup validatior ///////////
-    const [isOTPpopup, setIsOTPpopup] = useState(true);
+    const [isOTPpopup, setIsOTPpopup] = useState(false);
 
     // ///////////////////////////////////////////
     const [isSubmit, setIsSubmit] = useState(false);
@@ -122,6 +189,7 @@ function Signup() {
         // just to set the isOTPpopup to false;
 
         setIsOTPpopup(false);
+        setIsSubmit(false);
     }
     // for email validations.
     useEffect(() => {
@@ -189,26 +257,36 @@ function Signup() {
                 // Do something with the form data, e.g., send it to the server
                 // some other code 
                 setIsSubmit(true);
-                try {
-                    const response = await axios.post(`${API_URL}api/register/`, formData, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
+                api.post(`${API_URL}api/generate-otp/`, { email: formData.email }).then((response) => {
+                    if (response.status === 200) {
+                        // setIsSubmit(false);
+                        setIsOTPpopup(true);
+                    }
+                })
+                    .catch((error) => {
+                        setIsSubmit(false);
+                        toast.error(error.response.data.message);
                     });
-                    if (response.status === 201) {
-                        toast.success(response.data.message);
-                        toast.warn('Now you can Sign In to your account !')
-                        navigate('/login')
-                    }
-                } catch (error) {
-                    setIsSubmit(false);
-                    const backendErrors = error.response.data.errors
-                    for (const key in backendErrors) {
-                        const errorText = backendErrors[key][0]
-                        toast.error(errorText)
-                    }
+                // try {
+                //     const response = await axios.post(`${API_URL}api/register/`, formData, {
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //         }
+                //     });
+                //     if (response.status === 201) {
+                //         toast.success(response.data.message);
+                //         toast.warn('Now you can Sign In to your account !')
+                //         navigate('/login')
+                //     }
+                // } catch (error) {
+                //     setIsSubmit(false);
+                //     const backendErrors = error.response.data.errors
+                //     for (const key in backendErrors) {
+                //         const errorText = backendErrors[key][0]
+                //         toast.error(errorText)
+                //     }
 
-                }
+                // }
             } else {
                 toast.error('Passwords do not match.');
             }
@@ -223,7 +301,7 @@ function Signup() {
         <>  {
             // If otp popup is true then it will show popup.. here 
             isOTPpopup && <div className='min-h-[60vh] absolute top-0 left-0 right-0 z-50 flex justify-center items-end '>
-                <OTP_generate_registration callingFunctionFromChild={closing_popup} />
+                <OTP_generate_registration callingFunctionFromChild={closing_popup} formData={formData} />
             </div>
         }
             <div className='min-h-screen flex flex-col md:flex-row  items-center justify-start'>

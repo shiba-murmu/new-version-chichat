@@ -5,8 +5,50 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-
+from .utils import generate_otp, send_otp_email
+from django.utils import timezone
+from .models import OTP
 from .serializers import RegisterSerializer , UserSerializer
+
+class GenerateOTPView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        if not email:
+            return Response({'error' : 'Email is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Delete any existing OTP for this email
+        OTP.objects.filter(email=email).delete()
+
+        # Generate and save new OTP
+        otp = generate_otp()
+        OTP.objects.create(email=email, otp=otp)
+
+        # Send OTP via email
+        try:
+            send_otp_email(email, otp)
+            return Response({'message' : 'OTP send successfully'}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class VerifyOTPView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        otp = request.data.get('otp')
+        
+        try:
+            otp_obj = OTP.objects.get(email=email)
+            if otp_obj.is_verified:
+                return Response({'error': 'OTP already verified'}, status=status.HTTP_400_BAD_REQUEST)
+            if otp_obj.is_expired():
+                return Response({'error': 'OTP has expired'}, status=status.HTTP_400_BAD_REQUEST)
+            if otp_obj.otp != otp:
+                return Response({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            otp_obj.is_verified = True
+            otp_obj.save()
+            return Response({'message': 'OTP verified successfully'}, status=status.HTTP_200_OK)
+        except OTP.DoesNotExist:
+            return Response({'error': 'OTP not found'}, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
