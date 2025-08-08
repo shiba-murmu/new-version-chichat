@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import './signup.css';
 import validator from 'validator';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import api from '../../api/axiosInstance'
 const images = [
     'https://images.pexels.com/photos/3184435/pexels-photo-3184435.jpeg',
@@ -98,12 +97,6 @@ function OTP_generate_registration({ callingFunctionFromChild, formData }) {
                 }
             });
     }
-    // ?????????????????????????????????????????????
-
-
-
-
-
 
     return (
         <>
