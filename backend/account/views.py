@@ -10,6 +10,20 @@ from django.utils import timezone
 from .models import OTP
 from .serializers import RegisterSerializer , UserSerializer
 
+@api_view(['GET'])
+def username_exists(request):
+    username = request.data.get('username')
+    if User.objects.filter(username=username).exists():
+        return Response({'username_exists': True}, status=status.HTTP_200_OK)
+    return Response({'username_exists': False}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def email_exists(request):
+    email = request.query_params.get('email')
+    if User.objects.filter(email=email).exists():
+        return Response({'email_exists': True}, status=status.HTTP_200_OK)
+    return Response({'email_exists': False}, status=status.HTTP_200_OK)
+
 class GenerateOTPView(APIView):
     def post(self, request):
         email = request.data.get('email')

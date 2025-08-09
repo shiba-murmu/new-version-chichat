@@ -80,6 +80,7 @@ function OTP_generate_registration({ callingFunctionFromChild, formData }) {
                 })
                     .catch((error) => {
                         setIsSubmit(false);
+                        callingFunctionFromChild();
                         const backendErrors = error.response.data.errors
                         for (const key in backendErrors) {
                             const errorText = backendErrors[key][0]
@@ -155,6 +156,7 @@ function Signup() {
 
     // ///////////////////////////////////////////
     const [isSubmit, setIsSubmit] = useState(false);
+    const [buttonDisable , setButtonDisable] = useState(false)
 
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -202,6 +204,22 @@ function Signup() {
         }
     }, [formData.email])
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     useEffect(() => {
 
         formData.username = formData.username.trim(); // removing leading spaces and trailing spaces..
@@ -239,6 +257,46 @@ function Signup() {
         });
     };
 
+
+    // Email and username check..
+
+    useEffect(() => {
+        if (formData.email.trim() === " ") {
+            setEmailError("Enter valid email address");
+            setIsEmailValid(false);
+            return
+        }
+
+        const delaydebounce = setTimeout(() => {
+            api.get(`${API_URL}api/email-exists/`, { params: { email: formData.email } }).then((response) => {
+                if (response.data.email_exists) {
+                    setEmailError("Email already exists");
+                    setIsEmailValid(false);
+                    // setIsSubmit(true);
+                    setButtonDisable(true)
+                } else {
+                    setEmailError("Email is valid");
+                    setIsEmailValid(true);
+                    // setIsSubmit(false)
+                    setButtonDisable(false)
+                }
+            })
+                .catch((error) => {
+                    console.log(error.response.data);
+                })
+        }, 500);
+
+        return () => clearTimeout(delaydebounce);
+
+    }, [formData.email])
+
+
+
+
+
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // console.log('sending data : ', formData);
@@ -260,7 +318,7 @@ function Signup() {
                         setIsSubmit(false);
                         toast.error(error.response.data.message);
                     });
-               
+
             } else {
                 toast.error('Passwords do not match.');
             }
@@ -269,7 +327,6 @@ function Signup() {
             // Password is invalid
             toast.error('Password must be 8-15 characters long.');
         }
-
     }
     return (
         <>  {
@@ -364,7 +421,7 @@ function Signup() {
                                     }
                                 </div>
                             </div>
-                            <button type='submit' disabled={isSubmit} className='bg-[#7257ff] text-white hover:cursor-pointer text-sm md:text-md rounded p-2.5'>
+                            <button type='submit' disabled={isSubmit || buttonDisable} className={` ${ buttonDisable ? "bg-[#978dc5]" : "bg-[#7257ff] hover:cursor-pointer" } text-white  text-sm md:text-md rounded p-2.5`}>
                                 {
                                     isSubmit ? 'Please wait...' : 'Sign up'
                                 }
