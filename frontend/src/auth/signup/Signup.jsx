@@ -205,21 +205,6 @@ function Signup() {
     }, [formData.email])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     useEffect(() => {
 
         formData.username = formData.username.trim(); // removing leading spaces and trailing spaces..
@@ -261,6 +246,10 @@ function Signup() {
     // Email and username check..
 
     useEffect(() => {
+        if (formData.email == '') {
+            return
+        }
+        
         if (formData.email.trim() === " ") {
             setEmailError("Enter valid email address");
             setIsEmailValid(false);
