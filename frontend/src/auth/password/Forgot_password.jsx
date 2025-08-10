@@ -72,7 +72,7 @@ function Forgot_password() {
     }
 
     useEffect(() => {
-
+        
     })
 
     return (
