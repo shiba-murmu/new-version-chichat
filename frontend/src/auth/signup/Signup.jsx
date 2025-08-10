@@ -234,26 +234,51 @@ function Signup() {
         if (formData.username == '') {
             setUsernameError('Enter valid username');
             setIsUsernameValid(false);
+            return;
         } else if (formData.username.length <= 4) {
             setUsernameError('Invalid username');
             setIsUsernameValid(false);
+            return;
         } else if (formData.username.length >= 15) {
             setUsernameError('Invalid username');
             setIsUsernameValid(false);
+            return;
         } else if (!/^[a-z0-9_]+$/.test(formData.username)) {
             setUsernameError('Invalid username');
             setIsUsernameValid(false);
+            return;
         } else if (/^[0-9]/.test(formData.username)) {
             setUsernameError('Invalid username');
             setIsUsernameValid(false);
+            return;
         } else if (/\s/.test(formData.username)) {
             setEmailError('Invalid username');
             setIsUsernameValid(false);
+            return;
         } else {
-            setUsernameError('Username is valid');
-
             setIsUsernameValid(true);
+            const delaydebounce = setTimeout(() => {
+                api.get(`${API_URL}api/username-exists/`, { params: { username: formData.username } }).then((response) => {
+                    if (response.data.username_exists) {
+                        setUsernameError("Username already exists");
+                        setIsUsernameValid(false);
+                        // setIsSubmit(true);
+                        setButtonDisable(true)
+                    } else {
+                        setUsernameError("Username is valid");
+                        setIsUsernameValid(true);
+                        setButtonDisable(false);
+                    }
+                })
+                    .catch((error) => {
+                        console.log(error.response.data);
+                    })
+            }, 1000);
+
+            return () => clearTimeout(delaydebounce);
+
         }
+
     }, [formData.username])
 
     // Update form values
@@ -266,41 +291,41 @@ function Signup() {
 
 
     // Email and username check.. availablity check in the database..
-    useEffect(() => {
-        if (formData.username == '') {
-            return;
-        }
+    // useEffect(() => {
+    //     if (formData.username == '') {
+    //         return;
+    //     }
 
-        if (formData.username.trim() === " ") {
-            setUsernameError("Enter valid username");
-            setIsUsernameValid(false);
-            return
-        }
+    //     if (formData.username.trim() === " ") {
+    //         setUsernameError("Enter valid username");
+    //         setIsUsernameValid(false);
+    //         return
+    //     }
 
-        const delaydebounce = setTimeout(() => {
-            api.get(`${API_URL}api/username-exists/`, { params: { username: formData.username } }).then((response) => {
-                if (response.data.username_exists) {
-                    setUsernameError("Username already exists");
-                    setIsUsernameValid(false);
-                    // setIsSubmit(true);
-                    setButtonDisable(true)
-                } else {
-                    if (isUsernameValid) {
-                        setUsernameError("Username is valid");
-                        setButtonDisable(false)
-                    }
-                    else {
-                        setButtonDisable(true)
-                    }
-                }
-            })
-                .catch((error) => {
-                    console.log(error.response.data);
-                })
-        }, 1000);
+    // const delaydebounce = setTimeout(() => {
+    //     api.get(`${API_URL}api/username-exists/`, { params: { username: formData.username } }).then((response) => {
+    //         if (response.data.username_exists) {
+    //             setUsernameError("Username already exists");
+    //             setIsUsernameValid(false);
+    //             // setIsSubmit(true);
+    //             setButtonDisable(true)
+    //         } else {
+    //             if (isUsernameValid) {
+    //                 setUsernameError("Username is valid");
+    //                 setButtonDisable(false)
+    //             }
+    //             else {
+    //                 setButtonDisable(true)
+    //             }
+    //         }
+    //     })
+    //         .catch((error) => {
+    //             console.log(error.response.data);
+    //         })
+    // }, 1000);
 
-        return () => clearTimeout(delaydebounce);
-    }, [formData.username])
+    // return () => clearTimeout(delaydebounce);
+    // }, [formData.username])
 
 
     // useEffect(() => {
