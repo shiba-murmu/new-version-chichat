@@ -12,7 +12,7 @@ from .serializers import RegisterSerializer , UserSerializer
 
 @api_view(['GET'])
 def username_exists(request):
-    username = request.data.get('username')
+    username = request.query_params.get('username')
     if User.objects.filter(username=username).exists():
         return Response({'username_exists': True}, status=status.HTTP_200_OK)
     return Response({'username_exists': False}, status=status.HTTP_200_OK)

@@ -156,7 +156,7 @@ function Signup() {
 
     // ///////////////////////////////////////////
     const [isSubmit, setIsSubmit] = useState(false);
-    const [buttonDisable , setButtonDisable] = useState(false)
+    const [buttonDisable, setButtonDisable] = useState(false)
 
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -191,16 +191,38 @@ function Signup() {
         if (formData.email == '') {
             setEmailError('Enter valid email address');
             setIsEmailValid(false);
+            return;
         } else if (!validator.isEmail(formData.email)) {
             setEmailError('Invalid email address');
             setIsEmailValid(false);
+            return;
         } else if (!formData.email.endsWith('@gmail.com')) {
             setEmailError('Only Gmail emails are allowed');
             setIsEmailValid(false);
+            return;
         } else {
-            setEmailError('Email is valid');
-            // Here one api will send to the backend to check the email is already exist or not
-            setIsEmailValid(true);
+            setIsEmailValid(true); // First set the email as valid..
+            console.log(isEmailValid)
+            const delaydebounce = setTimeout(() => {
+                api.get(`${API_URL}api/email-exists/`, { params: { email: formData.email } }).then((response) => {
+                    if (response.data.email_exists) {
+                        setEmailError("Email already exists");
+                        setIsEmailValid(false);
+                        // setIsSubmit(true);
+                        setButtonDisable(true)
+                    } else {
+                        setEmailError("Email is valid");
+                        setIsEmailValid(true);
+                        setButtonDisable(false);
+
+                    }
+                })
+                    .catch((error) => {
+                        console.log(error.response.data);
+                    })
+            }, 1000);
+
+            return () => clearTimeout(delaydebounce);
         }
     }, [formData.email])
 
@@ -229,7 +251,7 @@ function Signup() {
             setIsUsernameValid(false);
         } else {
             setUsernameError('Username is valid');
-            // Here one api will send to the backend to check the username is already exist or not
+
             setIsUsernameValid(true);
         }
     }, [formData.username])
@@ -243,42 +265,82 @@ function Signup() {
     };
 
 
-    // Email and username check..
-
+    // Email and username check.. availablity check in the database..
     useEffect(() => {
-        if (formData.email == '') {
-            return
+        if (formData.username == '') {
+            return;
         }
-        
-        if (formData.email.trim() === " ") {
-            setEmailError("Enter valid email address");
-            setIsEmailValid(false);
+
+        if (formData.username.trim() === " ") {
+            setUsernameError("Enter valid username");
+            setIsUsernameValid(false);
             return
         }
 
         const delaydebounce = setTimeout(() => {
-            api.get(`${API_URL}api/email-exists/`, { params: { email: formData.email } }).then((response) => {
-                if (response.data.email_exists) {
-                    setEmailError("Email already exists");
-                    setIsEmailValid(false);
+            api.get(`${API_URL}api/username-exists/`, { params: { username: formData.username } }).then((response) => {
+                if (response.data.username_exists) {
+                    setUsernameError("Username already exists");
+                    setIsUsernameValid(false);
                     // setIsSubmit(true);
                     setButtonDisable(true)
                 } else {
-                    setEmailError("Email is valid");
-                    setIsEmailValid(true);
-                    // setIsSubmit(false)
-                    setButtonDisable(false)
+                    if (isUsernameValid) {
+                        setUsernameError("Username is valid");
+                        setButtonDisable(false)
+                    }
+                    else {
+                        setButtonDisable(true)
+                    }
                 }
             })
                 .catch((error) => {
                     console.log(error.response.data);
                 })
-        }, 500);
+        }, 1000);
 
         return () => clearTimeout(delaydebounce);
+    }, [formData.username])
 
-    }, [formData.email])
 
+    // useEffect(() => {
+    //     if (formData.email == '') {
+    //         return
+    //     }
+
+    //     if (formData.email.trim() === " ") {
+    //         setEmailError("Enter valid email address");
+    //         setIsEmailValid(false);
+    //         return
+    //     }
+
+    //     const delaydebounce = setTimeout(() => {
+    //         api.get(`${API_URL}api/email-exists/`, { params: { email: formData.email } }).then((response) => {
+    //             if (response.data.email_exists) {
+    //                 setEmailError("Email already exists");
+    //                 setIsEmailValid(false);
+    //                 // setIsSubmit(true);
+    //                 setButtonDisable(true)
+    //             } else {
+    //                 if (isEmailValid) {
+    //                     setEmailError("Email is valid");
+    //                     setButtonDisable(false)
+    //                 } else {
+    //                     setEmailError("Enter valid email address");
+    //                     setButtonDisable(true)
+    //                 }
+    //                 // setIsEmailValid(true);
+    //             }
+    //         })
+    //             .catch((error) => {
+    //                 console.log(error.response.data);
+    //             })
+    //     }, 1000);
+
+    //     return () => clearTimeout(delaydebounce);
+
+    // }, [formData.email])
+    // ?????????????????????????????????????????????????????????????????
 
 
 
@@ -410,13 +472,13 @@ function Signup() {
                                     }
                                 </div>
                             </div>
-                            <button type='submit' disabled={isSubmit || buttonDisable} className={` ${ buttonDisable ? "bg-[#978dc5]" : "bg-[#7257ff] hover:cursor-pointer" } text-white  text-sm md:text-md rounded p-2.5`}>
+                            <button type='submit' disabled={isSubmit || buttonDisable} className={` ${buttonDisable ? "bg-[#978dc5]" : "bg-[#7257ff] hover:cursor-pointer"} text-white  text-sm md:text-md rounded p-2.5`}>
                                 {
                                     isSubmit ? 'Please wait...' : 'Sign up'
                                 }
                             </button>
                             <Link to={'/login'} className='text-center'>
-                                <p className='text-sm md:text-md'>Already have an account? <span className='text-[#7257ff]'>Log in</span></p>
+                                <p className='text-sm md:text-md'>Already have an account? <span className='text-[#7257ff]'>Sign In</span></p>
                             </Link>
                         </form>
                         <p className='text-sm md:text-md text-center'>By signing up, you agree to our <br /><span className='text-[#7257ff]'>Terms of Service</span> and <span className='text-[#7257ff]'>Privacy Policy</span>.</p>
