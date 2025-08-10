@@ -19,6 +19,7 @@ import FollowerList from '../features/Followers/FollowerList'
 import FollowingList from '../features/Following/FollowingList'
 import Posts from '../features/posts/Posts'
 import User_profile from '../features/appusers/Users_profile'
+import Forgot_password from '../auth/password/Forgot_password'
 function AppRouter() {
     const location = useLocation()
     // list of pages where footer not visible
@@ -47,6 +48,7 @@ function AppRouter() {
                 <Route path="/posts" element={<ProtectedRoute><Posts /> </ProtectedRoute>} />
                 <Route path="/inbox/:id" element={<ProtectedRoute><Inbox_message /> </ProtectedRoute>} />
                 <Route path='/setting' element={<ProtectedRoute><MySetting /> </ProtectedRoute>} />
+                <Route path='/forgot-password' element={<Forgot_password />} />
             </Routes>
         </>
     )

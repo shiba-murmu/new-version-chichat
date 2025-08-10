@@ -192,7 +192,10 @@ function Login() {
                                 </Link>
                             </form>
                             {/* Mobile view */}
-                            <p className='md:hidden text-sm text-[#7257ff] hover:cursor-pointer'>Forgot your password ?</p>
+
+                            <p className='md:hidden text-sm text-[#7257ff] hover:cursor-pointer'>
+                                <Link to={'/forgot-password'}>Forgot your password?</Link>
+                            </p>
                             <Link to={'/signup'} className='md:hidden'>
                                 <p className='text-sm'>Don't have an account ? <span className='text-[#7257ff] hover:cursor-pointer'>Sign up</span></p>
                             </Link>
