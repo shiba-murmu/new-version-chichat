@@ -53,11 +53,7 @@ function Forgot_password() {
             [e.target.name]: e.target.value
         });
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Sending data : ', formData)
-    }
-
+    
     const toggleEyePassword = () => {
         // for password
         setIsEyeOpenedPassword(!isEyeOpenedPassword);
@@ -71,9 +67,11 @@ function Forgot_password() {
         setOtpPopUp(false);
     }
 
-    useEffect(() => {
-
-    })
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Sending data : ', formData)
+    }
+    
 
     return (
         <>
@@ -82,7 +80,7 @@ function Forgot_password() {
             }
             {/* <Otp_verify /> */}
             <div className='text-center p-2 bg-[#7257ff] text-white'>
-                <span className='text-xl font-SemiBold'>Password Recovery</span>
+                <span className='text-xl font-light'>Password Recovery</span>
             </div>
             <div>
                 <form action="" onSubmit={handleSubmit} className='flex flex-col gap-1'>
