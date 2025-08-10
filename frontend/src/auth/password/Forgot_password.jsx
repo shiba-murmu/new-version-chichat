@@ -88,7 +88,7 @@ function Forgot_password() {
                         <label htmlFor="email" className='text-sm font-medium'>Enter registered email address</label>
                     </div>
                     <div className='px-5'>
-                        <input type="email" id='email' onChange={handleChange} value={formData.email} name='email' required className='text-sm border border-[#7257ff] rounded-md
+                        <input type="email" id='email' onChange={handleChange} value={formData.email} name='email' required className='text-sm border input-style border-[#7257ff] rounded-md
                         px-3 py-3 w-full focus:outline-[#7257ff]' placeholder='Email address' />
                     </div>
                     <div className='my-2 px-4'>
