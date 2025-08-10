@@ -142,24 +142,14 @@ function Signup() {
     const navigate = useNavigate()
     const [isEyeOpened, setIsEyeOpened] = useState(false); // for toggle eye
     const [isEyeOpenedConfirmPassword, setIsEyeOpenedConfirmPassword] = useState(false);
-
-    ///////////////Email validator //////////////
     const [isEmailValid, setIsEmailValid] = useState(false);
     const [emailError, setEmailError] = useState('');
-
-    // /////////// username validator ///////////
     const [isUsernameValid, setIsUsernameValid] = useState(false);
     const [usernameError, setUsernameError] = useState('');
-
-    // /////////// OTP popup validatior ///////////
     const [isOTPpopup, setIsOTPpopup] = useState(false);
-
-    // ///////////////////////////////////////////
     const [isSubmit, setIsSubmit] = useState(false);
     const [buttonDisable, setButtonDisable] = useState(false)
-
     const API_URL = import.meta.env.VITE_API_URL;
-
     const toggleEyeConfirmPassword = () => {
         // for password confirm password ....
         setIsEyeOpenedConfirmPassword(!isEyeOpenedConfirmPassword);
@@ -288,89 +278,6 @@ function Signup() {
             [e.target.name]: e.target.value
         });
     };
-
-
-    // Email and username check.. availablity check in the database..
-    // useEffect(() => {
-    //     if (formData.username == '') {
-    //         return;
-    //     }
-
-    //     if (formData.username.trim() === " ") {
-    //         setUsernameError("Enter valid username");
-    //         setIsUsernameValid(false);
-    //         return
-    //     }
-
-    // const delaydebounce = setTimeout(() => {
-    //     api.get(`${API_URL}api/username-exists/`, { params: { username: formData.username } }).then((response) => {
-    //         if (response.data.username_exists) {
-    //             setUsernameError("Username already exists");
-    //             setIsUsernameValid(false);
-    //             // setIsSubmit(true);
-    //             setButtonDisable(true)
-    //         } else {
-    //             if (isUsernameValid) {
-    //                 setUsernameError("Username is valid");
-    //                 setButtonDisable(false)
-    //             }
-    //             else {
-    //                 setButtonDisable(true)
-    //             }
-    //         }
-    //     })
-    //         .catch((error) => {
-    //             console.log(error.response.data);
-    //         })
-    // }, 1000);
-
-    // return () => clearTimeout(delaydebounce);
-    // }, [formData.username])
-
-
-    // useEffect(() => {
-    //     if (formData.email == '') {
-    //         return
-    //     }
-
-    //     if (formData.email.trim() === " ") {
-    //         setEmailError("Enter valid email address");
-    //         setIsEmailValid(false);
-    //         return
-    //     }
-
-    //     const delaydebounce = setTimeout(() => {
-    //         api.get(`${API_URL}api/email-exists/`, { params: { email: formData.email } }).then((response) => {
-    //             if (response.data.email_exists) {
-    //                 setEmailError("Email already exists");
-    //                 setIsEmailValid(false);
-    //                 // setIsSubmit(true);
-    //                 setButtonDisable(true)
-    //             } else {
-    //                 if (isEmailValid) {
-    //                     setEmailError("Email is valid");
-    //                     setButtonDisable(false)
-    //                 } else {
-    //                     setEmailError("Enter valid email address");
-    //                     setButtonDisable(true)
-    //                 }
-    //                 // setIsEmailValid(true);
-    //             }
-    //         })
-    //             .catch((error) => {
-    //                 console.log(error.response.data);
-    //             })
-    //     }, 1000);
-
-    //     return () => clearTimeout(delaydebounce);
-
-    // }, [formData.email])
-    // ?????????????????????????????????????????????????????????????????
-
-
-
-
-
 
 
     const handleSubmit = async (e) => {
