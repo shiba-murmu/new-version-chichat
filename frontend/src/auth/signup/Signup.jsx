@@ -192,7 +192,6 @@ function Signup() {
             return;
         } else {
             setIsEmailValid(true); // First set the email as valid..
-            console.log(isEmailValid)
             const delaydebounce = setTimeout(() => {
                 api.get(`${API_URL}api/email-exists/`, { params: { email: formData.email } }).then((response) => {
                     if (response.data.email_exists) {
