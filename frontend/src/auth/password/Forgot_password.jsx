@@ -72,7 +72,7 @@ function Forgot_password() {
     }
 
     useEffect(() => {
-        
+
     })
 
     return (
@@ -87,19 +87,19 @@ function Forgot_password() {
             <div>
                 <form action="" onSubmit={handleSubmit} className='flex flex-col gap-1'>
                     <div className='my-2 px-4'>
-                        <label htmlFor="email" className='text-sm'>Enter registered email address</label>
+                        <label htmlFor="email" className='text-sm font-medium'>Enter registered email address</label>
                     </div>
                     <div className='px-5'>
                         <input type="email" id='email' onChange={handleChange} value={formData.email} name='email' required className='text-sm border border-[#7257ff] rounded-md
-                        px-3 py-2 w-full focus:outline-[#7257ff]' placeholder='Email address' />
+                        px-3 py-3 w-full focus:outline-[#7257ff]' placeholder='Email address' />
                     </div>
                     <div className='my-2 px-4'>
-                        <label htmlFor="password" className='text-sm'>Enter new password!</label>
+                        <label htmlFor="password" className='text-sm font-medium'>Enter new password!</label>
                     </div>
                     <div className=' relative w-full px-5'>
                         <input type={isEyeOpenedPassword ? 'text' : 'password'} id='password' onChange={handleChange} value={formData.password} name='password' required className='input-style border text-sm border-[#7257ff] rounded-md
-                        px-3 py-2 w-full focus:outline-[#7257ff]' placeholder='Password' />
-                        <div className='absolute inset-y-0 right-7 flex items-center'>
+                        px-3 py-3 w-full focus:outline-[#7257ff]' placeholder='Password' />
+                        <div className='absolute inset-y-0 right-8 flex items-center'>
                             {
                                 isEyeOpenedPassword ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.2" stroke="currentColor" className="size-5 md:size-6 hover:cursor-pointer" style={{ color: '#7257ff' }} onClick={toggleEyePassword}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -111,12 +111,12 @@ function Forgot_password() {
                         </div>
                     </div>
                     <div className='my-2 px-4'>
-                        <label htmlFor="confirm-password" className='text-sm'>Confirm password!</label>
+                        <label htmlFor="confirm-password" className='text-sm font-medium'>Confirm password!</label>
                     </div>
                     <div className=' relative w-full px-5'>
                         <input type={`${isEyeOpenedConfirmPassword ? 'text' : 'password'}`} id='confirm-password' name='confirm_password' onChange={handleChange} value={formData.confirm_password} required className='input-style text-sm border border-[#7257ff] rounded-md
-                        px-3 py-2 w-full focus:outline-[#7257ff]' placeholder='Confirm password' />
-                        <div className='absolute inset-y-0 right-7 flex items-center'>
+                        px-3 py-3 w-full focus:outline-[#7257ff]' placeholder='Confirm password' />
+                        <div className='absolute inset-y-0 right-8 flex items-center'>
                             {
                                 isEyeOpenedConfirmPassword ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.2" stroke="currentColor" className="size-5 md:size-6 hover:cursor-pointer" style={{ color: '#7257ff' }} onClick={toggleEyeConfirmPassword}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -127,8 +127,8 @@ function Forgot_password() {
                             }
                         </div>
                     </div>
-                    <div className='px-5 my-2'>
-                        <button type='submit' className='w-full text-sm hover:cursor-pointer bg-[#7257ff] text-white py-2 rounded-md'>
+                    <div className='px-5 my-6'>
+                        <button type='submit' className='w-full text-sm hover:cursor-pointer bg-[#7257ff] text-white py-3 rounded-md'>
                             Recovery password
                         </button>
                     </div>
