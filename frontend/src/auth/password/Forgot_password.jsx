@@ -1,14 +1,21 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import api from '../../api/axiosInstance'
+// import toast from 'react-toastify';
+import { toast } from 'react-toastify';
 function Forgot_password() {
 
     const [isEyeOpenedPassword, setIsEyeOpenedPassword] = useState(false);
     const [isEyeOpenedConfirmPassword, setIsEyeOpenedConfirmPassword] = useState(false);
     const [otpPopUp, setOtpPopUp] = useState(false);
-
+    const [buttonDisable, setButtonDisable] = useState(false);
+    const API_URL = import.meta.env.VITE_API_URL
     const Otp_verify = ({ closeUi }) => {
+
+        const handlePopUpSubmit = () => {
+
+        }
 
         return (
             <>
@@ -28,7 +35,7 @@ function Forgot_password() {
                         px-3 py-2 w-full focus:outline-[#c8c8c8]' placeholder='Password' />
                         </div>
                         <div className='w-[80%]'>
-                            <button type='submit' className='w-full hover:cursor-pointer bg-[#fcfcfc] text-[#7257ff]  py-2 rounded-md'>
+                            <button type='submit' onClick={handlePopUpSubmit} className='w-full hover:cursor-pointer bg-[#fcfcfc] text-[#7257ff]  py-2 rounded-md'>
                                 Recovery password
                             </button>
                         </div>
@@ -53,7 +60,7 @@ function Forgot_password() {
             [e.target.name]: e.target.value
         });
     }
-    
+
     const toggleEyePassword = () => {
         // for password
         setIsEyeOpenedPassword(!isEyeOpenedPassword);
@@ -65,13 +72,30 @@ function Forgot_password() {
     const closePopup = () => {
         // setOtpPop(false);
         setOtpPopUp(false);
+        setButtonDisable(false);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Sending data : ', formData)
+        setButtonDisable(true);
+        // console.log('Sending data : ', formData)
+        if (formData.password === formData.confirm_password) {
+            // Passwords match
+            api.post(`${API_URL}api/generate-otp-for-reset/`, { email: formData.email }).then((response) => {
+                if (response.status === 200) {
+                    setOtpPopUp(true);
+                }
+            })
+                .catch((error) => {
+                    toast.error(error.response.data.message);
+                    setButtonDisable(false);
+                });
+        } else {
+            toast.error('Passwords do not match.');
+            setButtonDisable(false);
+        }
     }
-    
+
 
     return (
         <>
@@ -126,8 +150,10 @@ function Forgot_password() {
                         </div>
                     </div>
                     <div className='px-5 my-6'>
-                        <button type='submit' className='w-full text-sm hover:cursor-pointer bg-[#7257ff] text-white py-3 rounded-md'>
-                            Recovery password
+                        <button type='submit' disabled={buttonDisable} className='w-full text-sm hover:cursor-pointer bg-[#7257ff] text-white py-3 rounded-md'>
+                            {
+                                buttonDisable ? 'Please wait...' : 'Reset Password'
+                            }
                         </button>
                     </div>
                     <div className='flex items-center justify-center text-sm'>

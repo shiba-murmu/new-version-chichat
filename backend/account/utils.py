@@ -11,3 +11,9 @@ def send_otp_email(email, otp):
     message = f'Your OTP code is {otp}.It is valid for 5 minutes.'
     from_email = settings.EMAIL_HOST_USER
     send_mail(subject, message, from_email, [email])
+
+def send_otp_email_for_reset(email, otp):
+    subject = 'Password Reset OTP'
+    message = f'Your OTP code is {otp}.It is valid for 5 minutes.'
+    from_email = settings.EMAIL_HOST_USER
+    send_mail(subject, message, from_email, [email])

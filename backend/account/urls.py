@@ -7,7 +7,9 @@ from account.views import (
     GenerateOTPView ,
     VerifyOTPView,
     email_exists,
-    username_exists
+    username_exists,
+    Generate_otp_for_reset
+    
 )
 # api request is coming from the frontend side .
 urlpatterns = [
@@ -19,4 +21,5 @@ urlpatterns = [
     path('verify-otp/', VerifyOTPView.as_view(), name='verify-otp'),
     path('email-exists/', email_exists, name='email_exists'),
     path('username-exists/', username_exists, name='username_exists'),
+    path('generate-otp-for-reset/', Generate_otp_for_reset.as_view(), name='generate_otp_for_reset'),
 ]

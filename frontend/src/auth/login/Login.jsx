@@ -59,22 +59,22 @@ function Login() {
         if (accessToken) {
             navigate('/home')
         }
-    } , [])
+    }, [])
 
     // useEffect(() => {
     //     console.log('Runs one time.')
     // })
 
     //////////////// form submission //////////////
-    const [formData , setFormData] = useState({
-        username : '',
-        password : ''
+    const [formData, setFormData] = useState({
+        username: '',
+        password: ''
     })
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         });
     };
 
@@ -87,24 +87,24 @@ function Login() {
 
         try {
             const response = await axios.post(`${API_URL}api/token/login/`,
-               formData
-             , {
-                headers : {
-                    'Content-Type' : 'application/json',
-                }
-            });
+                formData
+                , {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
 
             if (response.status === 200) {
-                const { access , refresh } = response.data;
+                const { access, refresh } = response.data;
                 // storing token 
                 // console.log(response.data);
-                localStorage.setItem('access' , access);
-                localStorage.setItem('refresh' , refresh);
+                localStorage.setItem('access', access);
+                localStorage.setItem('refresh', refresh);
                 toast.success('Login successful !')
                 navigate('/profile');
             }
         } catch (error) {
-            toast.error('Login failed !'  , error.response.message)
+            toast.error('Login failed !', error.response.message)
             // console.log(error) // to see the error's
         } finally {
             setIsSubmit(false);
@@ -159,14 +159,14 @@ function Login() {
                             </div>
                             <form action="" onSubmit={handleSubmit} className='flex flex-col justify-center items-center md:justify-center md:items-center gap-4 w-60'>
                                 <input type="text" name='username' placeholder='Username'
-                                onChange={handleChange}
-                                value={formData.username}
-                                className='border input-style md:w-80   text-sm md:text-md border-[#7257ff] rounded w-[16rem] p-2.5 focus:outline-[#7257ff]' required />
-                                <div className='relative w-fit md:w-80'>
-                                    <input type={isEyeOpened ? 'text' : 'password'} placeholder='Password' name='password' 
                                     onChange={handleChange}
-                                    value={formData.password}
-                                    className='rounded md:w-80  text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5 ' required />
+                                    value={formData.username}
+                                    className='border input-style md:w-80   text-sm md:text-md border-[#7257ff] rounded w-[16rem] p-2.5 focus:outline-[#7257ff]' required />
+                                <div className='relative w-fit md:w-80'>
+                                    <input type={isEyeOpened ? 'text' : 'password'} placeholder='Password' name='password'
+                                        onChange={handleChange}
+                                        value={formData.password}
+                                        className='rounded md:w-80  text-sm input-style  border-[#7257ff] focus:outline-[#7257ff] w-[16rem] border p-2.5 ' required />
                                     <div className='absolute inset-y-0 right-3 flex items-center'>
                                         {
                                             isEyeOpened ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.2" stroke="currentColor" className="size-5 md:size-6 hover:cursor-pointer" style={{ color: '#7257ff' }} onClick={toggleEye}>
@@ -186,7 +186,9 @@ function Login() {
                                 </button>
 
                                 {/* Desktop view */}
-                                <p className='hidden md:block text-md md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>Forgot your password ?</p>
+                                <p className='hidden md:block text-md md:text-md text-[#7257ff] my-2 hover:cursor-pointer'>
+                                    <Link to={'/forgot-password'}>Forgot your password?</Link>
+                                </p>
                                 <Link to={'/signup'} className='hidden md:block md:w-80 text-center '>
                                     <p className='text-md'>Don't have an account ? <span className='text-[#7257ff] hover:cursor-pointer'>Sign up</span></p>
                                 </Link>
