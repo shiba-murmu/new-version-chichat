@@ -23,7 +23,7 @@ import Forgot_password from '../auth/password/Forgot_password'
 function AppRouter() {
     const location = useLocation()
     // list of pages where footer not visible
-    const pages = ['/','/login', '/signup', '/chats', '/inbox']
+    const pages = ['/','/login', '/signup', '/chats', '/inbox', '/forgot-password']
 
     // match the entire exact path or sub - path (with /) or '/inbox/:id'
     const shouldShowFooter = !pages.some(
